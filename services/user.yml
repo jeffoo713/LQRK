@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  user:
+    build: ../../user_service
+    command: bundle exec rails s -p 8881 -b '0.0.0.0'
+    volumes:
+      - ../../user_service:/app
+    ports:
+      - "8881:8881"
+    depends_on:
+      - postgres

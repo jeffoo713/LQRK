@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:14.2-alpine
+    restart: always
+    env_file:
+      - common.env
+    volumes:
+      - ./pg_init_scripts:/docker-entrypoint-initdb.d # special directory that Postgres uses to run scripts during container startup.
+      - lqrk-data:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+  user:
+    extends:
+      file: services/user.yml
+      service: user
+    depends_on:
+      - postgres
+
+volumes:
+  lqrk-data:
