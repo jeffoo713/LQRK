@@ -2,7 +2,7 @@ version: '3.8'
 services:
   user:
     build: ../../user_service
-    command: bundle exec rails s -p 8881 -b '0.0.0.0'
+    command: ["sh", "/app/start.sh"]
     volumes:
       - ../../user_service:/app
     ports:
