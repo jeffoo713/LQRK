@@ -1,4 +1,3 @@
-# Start from the official Ruby image, then update and install JS runtime
 FROM ruby:3.1.0
 
 # Set the working directory
@@ -22,7 +21,8 @@ COPY . .
 # Expose ports
 EXPOSE 8881
 
-RUN rm -f /app/tmp/pids/server.pid
+# make start script executable
+RUN chmod +x /app/start.sh
 
 # Set the entrypoint command
 CMD ["rails", "server", "-b", "0.0.0.0"]
