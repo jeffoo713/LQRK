@@ -7,6 +7,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 User.create!(username: "jaamongsoda")
-User.create!(username: "purple melon")
-User.create!(username: "Creamy engine oil")
-User.create!(username: "cheezcrust pizza")
+User.create!(username: "purple_melon")
+User.create!(username: "Creamy_engine_oil")
+User.create!(username: "cheezcrust_pizza")
