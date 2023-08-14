@@ -19,6 +19,14 @@ services:
       - common.env
     depends_on:
       - postgres
+  liquor:
+    extends:
+      file: services/liquor.yml
+      service: liquor
+    env_file:
+      - common.env
+    depends_on:
+      - postgres
 
 volumes:
   lqrk-data:

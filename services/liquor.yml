@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  liquor:
+    build: ../../liquor_service
+    command: ["sh", "/app/start.sh"]
+    volumes:
+      - ../../liquor_service:/app
+    ports:
+      - "8882:8882"
+    depends_on:
+      - postgres
