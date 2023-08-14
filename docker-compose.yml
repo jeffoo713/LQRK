@@ -7,7 +7,6 @@ services:
     env_file:
       - common.env
     volumes:
-      - ./pg_init_scripts:/docker-entrypoint-initdb.d # special directory that Postgres uses to run scripts during container startup.
       - lqrk-data:/var/lib/postgresql/data
     ports:
       - "5434:5432"
