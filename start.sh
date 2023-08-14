@@ -5,6 +5,9 @@ echo "Start liquor service..."
 # Remove a potentially pre-existing server.pid for Rails.
 rm -f /app/tmp/pids/server.pid
 
+echo "Create database if it doesn't exist..."
+rails db:create
+
 echo "Running db migration..."
 rails db:migrate
 
