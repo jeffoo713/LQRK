@@ -12,6 +12,7 @@ class LiquorsController < ApplicationController
 
   def create
     req_body = JSON.parse(request.body.read)
+
     liquor = Liquor.create!(req_body)
 
     render json: liquor
@@ -39,11 +40,5 @@ class LiquorsController < ApplicationController
     liquor.destroy
 
     render json: liquor
-  end
-
-  private
-
-  def liquor_params
-    params.require(:liquor).permit(:name, :type, :company, :alcohol_percentage, :country, :description, :year, :volume, :price)
   end
 end
