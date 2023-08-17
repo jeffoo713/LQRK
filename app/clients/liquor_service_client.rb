@@ -9,8 +9,7 @@ class LiquorServiceClient
   end
 
   def fetch_liquors_for_user
-    # TODO: Specify the url better. It's fetching all the liquors right now.
-    response = @connection.get('/liquors')
+    response = @connection.get("/liquors?user_id=#{@user_id}")
 
     if response.success?
       JSON.parse(response.body)
