@@ -1,8 +1,13 @@
 class LiquorsController < ApplicationController
 
   def index
-    liquors = Liquor.all
+    user_id = params.require(:user_id)
+    liquors = Liquor.where(user_id:)
+
     render json: liquors
+
+  rescue ActionController::ParameterMissing => e
+    render json: { message: e }, status: 400
   end
 
   def show
@@ -12,7 +17,6 @@ class LiquorsController < ApplicationController
 
   def create
     req_body = JSON.parse(request.body.read)
-
     liquor = Liquor.create!(req_body)
 
     render json: liquor
