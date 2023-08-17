@@ -15,6 +15,8 @@ gem "puma", "~> 5.0"
 # Use GraphQL
 gem 'graphql'
 
+gem 'faraday'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
