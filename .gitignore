@@ -30,3 +30,5 @@
 
 .idea
 .keep
+
+/config/credentials/development.key

@@ -18,5 +18,4 @@ class LiquorServiceClient
       []
     end
   end
-
 end
