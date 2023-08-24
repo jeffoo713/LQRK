@@ -7,10 +7,9 @@ class AuthenticationController < ApplicationController
     user = User.find_by(username: params[:username])
 
     if user
-      user_id = user.id
-      token = encode_token({ user_id: })
+      token = encode_token({ user_id: user.id })
 
-      render json: { token:, user_id: }
+      render json: { token:, user: }
     else
       render json: { errors: ["Cannot find the username: #{params[:username]}"] }, status: :unauthorized
     end
