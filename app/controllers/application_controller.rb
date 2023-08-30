@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-  before_action :authorized
+  before_action :authorized?
 
   def signed_in?
     !!current_user
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
     nil
   end
 
-  def authorized
+  def authorized?
     render json: { errors: ['Authentication failed'] }, status: :unauthorized unless signed_in?
   end
 end

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class GraphqlController < ApplicationController
+  skip_before_action :authorized?, only: [:execute]
+  before_action :skip_authorized_to_sign_in
+
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
   # but you'll have to authenticate your user separately
@@ -8,13 +11,12 @@ class GraphqlController < ApplicationController
 
   def execute
     variables = prepare_variables(params[:variables])
-    query = params[:query]
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
       # current_user: current_user,
     }
-    result = UserServiceSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = UserServiceSchema.execute(@query, variables:, context:, operation_name:)
     render json: result
   rescue StandardError => e
     raise e unless Rails.env.development?
@@ -22,6 +24,14 @@ class GraphqlController < ApplicationController
   end
 
   private
+
+  def skip_authorized_to_sign_in
+    @query = params[:query]
+
+    return if @query.include?('signIn')
+
+    authorized?
+  end
 
   # Handle variables in form data, JSON body, or a blank value
   def prepare_variables(variables_param)
