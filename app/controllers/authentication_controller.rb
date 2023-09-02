@@ -18,6 +18,8 @@ class AuthenticationController < ApplicationController
   private
 
   def encode_token(payload)
+    payload[:exp] = (Time.now + 1.years).to_i
+
     JWT.encode(payload, ENV.fetch('JWT_SECRET_KEY'), 'HS256')
   end
 end

@@ -14,8 +14,10 @@ class ApplicationController < ActionController::API
     user_id = JWT.decode(token, ENV.fetch('JWT_SECRET_KEY', 'no_key_found'), true, { algorithm: 'HS256' })[0]['user_id']
 
     @user = User.find(user_id)
+  rescue JWT::ExpiredSignature
+    render json: { errors: ['Expired auth token provided'] }, status: :unauthorized
   rescue JWT::DecodeError
-    nil
+    render json: { errors: ['Authentication error occurred'] }, status: :unauthorized
   end
 
   def authorized?
