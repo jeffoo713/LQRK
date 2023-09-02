@@ -7,19 +7,11 @@ class AuthenticationController < ApplicationController
     user = User.find_by(username: params[:username])
 
     if user
-      token = encode_token({ user_id: user.id })
+      token = TokenService.encoded_token(user.id)
 
       render json: { token:, user: }
     else
       render json: { errors: ["Cannot find the username: #{params[:username]}"] }, status: :unauthorized
     end
-  end
-
-  private
-
-  def encode_token(payload)
-    payload[:exp] = (Time.now + 1.years).to_i
-
-    JWT.encode(payload, ENV.fetch('JWT_SECRET_KEY'), 'HS256')
   end
 end
