@@ -6,6 +6,7 @@ module AuthTokenService
   extend self
 
   include JwtTokenConfig
+  include TokenDecoder
 
   def encoded_token(user_id)
     payload = { user_id:, exp: auth_token_exp }
@@ -26,11 +27,5 @@ module AuthTokenService
     { user: nil, error: 'Expired auth token provided' }
   rescue JWT::DecodeError
     { user: nil, error: 'Authentication error occurred' }
-  end
-
-  private
-
-  def decoded_token(token)
-    JWT.decode(token, ENV.fetch('JWT_SECRET_KEY', 'no_key_found'), true, { algorithm: HMAC_ALGORITHM })
   end
 end
