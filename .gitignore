@@ -32,3 +32,5 @@
 .keep
 
 /config/credentials/development.key
+
+.env
