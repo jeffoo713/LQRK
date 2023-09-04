@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-module TokenService
+module AuthTokenService
   extend self
 
-  def encoded_token(user_id)
-    payload = { user_id:, exp: (Time.zone.now + 1.years).to_i }
+  include JwtTokenConfig
 
-    JWT.encode(payload, ENV.fetch('JWT_SECRET_KEY'), 'HS256')
+  def encoded_token(user_id)
+    payload = { user_id:, exp: auth_token_exp }
+
+    JWT.encode(payload, ENV.fetch('JWT_SECRET_KEY'), HMAC_ALGORITHM)
   end
 
   def extract_current_user(token)

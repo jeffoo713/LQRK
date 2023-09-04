@@ -7,7 +7,7 @@ class AuthenticationController < ApplicationController
     user = User.find_by(username: params[:username])
 
     if user
-      token = TokenService.encoded_token(user.id)
+      token = AuthTokenService.encoded_token(user.id)
 
       render json: { token:, user: }
     else

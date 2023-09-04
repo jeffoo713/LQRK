@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
 
   def authorized?
     token = request.headers['Authorization']
-    TokenService.extract_current_user(token) => { user:, error: }
+    AuthTokenService.extract_current_user(token) => { user:, error: }
 
     render json: { errors: [error] }, status: :unauthorized if error.present?
   end
