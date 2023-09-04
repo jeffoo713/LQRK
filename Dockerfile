@@ -12,7 +12,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install gems
-#COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock ./
 COPY Gemfile ./
 RUN gem install bundler:2.3.3 && bundle install
 
