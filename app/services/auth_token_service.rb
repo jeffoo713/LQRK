@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'config/jwt_token_config'
+
 module AuthTokenService
   extend self
 
@@ -29,6 +31,6 @@ module AuthTokenService
   private
 
   def decoded_token(token)
-    JWT.decode(token, ENV.fetch('JWT_SECRET_KEY', 'no_key_found'), true, { algorithm: 'HS256' })
+    JWT.decode(token, ENV.fetch('JWT_SECRET_KEY', 'no_key_found'), true, { algorithm: HMAC_ALGORITHM })
   end
 end

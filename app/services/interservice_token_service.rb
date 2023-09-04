@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'config/jwt_token_config'
+
 module InterserviceTokenService
   extend self
 

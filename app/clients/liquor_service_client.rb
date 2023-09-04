@@ -22,7 +22,12 @@ class LiquorServiceClient
     if response.success?
       JSON.parse(response.body)
     else
-      # TODO: handle error better. It's returning an empty array right now.
+      Rails.logger.error({
+                           error_message: "Failed to fetch liquors for user_id: #{@user_id}",
+                           response_body: JSON.parse(response.body),
+                           response_status: response.status,
+                           time: Time.now
+                         })
       []
     end
   end
