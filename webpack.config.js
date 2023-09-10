@@ -5,11 +5,15 @@ const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: prod ? 'production' : 'development',
+  devtool: prod ? undefined : 'inline-source-map',
   entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, '/dist/'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
+  },
+  devServer: {
+    port: 3333,
   },
   module: {
     rules: [
@@ -32,7 +36,6 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
-  devtool: prod ? undefined : 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
