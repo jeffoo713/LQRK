@@ -26,6 +26,12 @@ services:
       - common.env
     depends_on:
       - postgres
+  client:
+    extends:
+      file: services/client.yml
+      service: client
+    env_file:
+      - common.env
 
 volumes:
   lqrk-data:
