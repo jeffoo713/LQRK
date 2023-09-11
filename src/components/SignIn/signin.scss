@@ -1,0 +1,42 @@
+@import 'src/assets/_colors.scss';
+
+.signin-form {
+  width: 60%;
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  input {
+    width: 80%;
+    font-size: 1.1rem;
+    padding: 0.4rem;
+    border: 1px solid $input-border;
+    border-radius: 0.2rem;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    width: 50%;
+    border: 1px solid $input-border;
+    border-radius: 0.2rem;
+    background-color: $button;
+    font-size: 1rem;
+    padding: 0.5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: $button-activated;
+    }
+  }
+}
