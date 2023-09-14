@@ -1,12 +1,9 @@
 import React, { Fragment, useContext, useState } from 'react';
 import userService from '../../services/userService';
 import GlobalContext from '../../stateManagement/globalContext';
+import { UserActionTypeEnum } from '../../stateManagement/reducers/userReducer/userActionTypeEnums';
 
 import './signin.scss';
-
-type FormInput = {
-  username: string;
-};
 
 const SignIn: React.FC = () => {
   const { state, dispatch } = useContext(GlobalContext);
@@ -29,7 +26,7 @@ const SignIn: React.FC = () => {
     if (res.errors.length) return console.log(res.errors);
 
     dispatch({
-      type: 'USER_SIGN_IN',
+      type: UserActionTypeEnum.USER_SIGN_IN,
       payload: { userId: res.user.id, username: res.user.username },
     });
   };

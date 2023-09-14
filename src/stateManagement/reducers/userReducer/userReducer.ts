@@ -1,3 +1,5 @@
+import { UserActionTypeEnum } from './userActionTypeEnums';
+
 export const INITIAL_USER_STATE = {
   userId: -1,
   username: '',
@@ -5,7 +7,7 @@ export const INITIAL_USER_STATE = {
 
 export const userReducer = (state: UserStateType, action: UserActionType): UserStateType => {
   switch (action.type) {
-    case 'USER_SIGN_IN':
+    case UserActionTypeEnum.USER_SIGN_IN:
       return {
         ...state,
         ...action.payload,

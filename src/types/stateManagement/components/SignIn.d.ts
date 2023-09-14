@@ -1,0 +1,3 @@
+type FormInput = {
+  username: string;
+};
