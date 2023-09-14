@@ -2,7 +2,7 @@
 
 class LiquorServiceClient
   DESTINATION_SERVICE = 'liquor'
-  BASE_URL = 'http://liquor:8882'
+  BASE_URL = ENV.fetch('LIQUOR_SERVICE_BASE_URL')
 
   def initialize(user_id)
     @user_id = user_id

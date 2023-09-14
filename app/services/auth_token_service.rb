@@ -17,7 +17,7 @@ module AuthTokenService
   def extract_current_user(token)
     return nil if token.blank?
 
-    user_id = decoded_token(token)[0]['user_id']
+    user_id = decoded_token(token)['user_id']
     user = User.find_by(id: user_id)
 
     return { user:, error: "User not found with user_id: #{user_id}" } if user.blank?
