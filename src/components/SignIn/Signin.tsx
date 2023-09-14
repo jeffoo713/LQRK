@@ -1,5 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import userService from '../../services/userService';
+import GlobalContext from '../../stateManagement/globalContext';
 
 import './signin.scss';
 
@@ -8,6 +9,8 @@ type FormInput = {
 };
 
 const SignIn: React.FC = () => {
+  const { state, dispatch } = useContext(GlobalContext);
+
   const [formInput, setFormInput] = useState<FormInput>({ username: '' });
   const { username } = formInput;
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -18,9 +21,17 @@ const SignIn: React.FC = () => {
     const res = await userService.signIn(username);
     console.log(res);
 
-    if (res.errors.length) {
-      return console.log(res.errors);
-    }
+    setFormInput(prev => ({
+      ...prev,
+      username: '',
+    }));
+
+    if (res.errors.length) return console.log(res.errors);
+
+    dispatch({
+      type: 'USER_SIGN_IN',
+      payload: { userId: res.user.id, username: res.user.username },
+    });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
