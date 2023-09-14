@@ -17,11 +17,10 @@ class UserService {
   private axios: AxiosInstance;
 
   constructor() {
-    console.log('process.env.USER_SERVICE_BASE_URL', process.env.USER_SERVICE_BASE_URL)
     this.axios = axios.create({
       baseURL: process.env.USER_SERVICE_BASE_URL,
       timeout: 10000,
-      headers: { Authorization: localStorage.getItem('username') },
+      headers: { Authorization: JSON.parse(localStorage.getItem('user') || '')?.username },
     });
   }
 
@@ -40,7 +39,7 @@ class UserService {
         }
       }
     `;
-      console.log(process.env)
+
     const response: AxiosResponse = await this.axios.post(`/graphql`, {
       query,
     });
