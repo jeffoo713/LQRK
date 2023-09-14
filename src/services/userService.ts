@@ -17,10 +17,14 @@ class UserService {
   private axios: AxiosInstance;
 
   constructor() {
+    const userToken: string = localStorage.getItem('user-token')
+      ? JSON.parse(localStorage.getItem('user-token')!)
+      : null;
+
     this.axios = axios.create({
       baseURL: process.env.USER_SERVICE_BASE_URL,
       timeout: 10000,
-      headers: { Authorization: JSON.parse(localStorage.getItem('user') || '')?.username },
+      headers: { Authorization: userToken },
     });
   }
 
