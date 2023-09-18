@@ -1,6 +1,6 @@
 type ActionType = {
   type: string;
-  payload: UserActionPayloadType;
+  payload?: UserActionPayloadType;
 };
 
 type GlobalStateType = {

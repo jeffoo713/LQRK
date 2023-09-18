@@ -5,7 +5,7 @@ type UserActionPayloadType = {
 
 type UserActionType = {
   type: string;
-  payload: UserActionPayloadType;
+  payload?: UserActionPayloadType;
 };
 
 type UserStateType = {

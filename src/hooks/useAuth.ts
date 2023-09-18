@@ -1,17 +1,41 @@
 import { useContext, useEffect, useState } from 'react';
 import GlobalContext from '../stateManagement/globalContext';
+import { UserActionTypeEnum } from '../stateManagement/reducers/userReducer/userActionTypeEnums';
+import localstorageService from '../services/localstorageService';
 
 export const useAuth = () => {
-  const { state } = useContext(GlobalContext);
+  const { state, dispatch } = useContext(GlobalContext);
   const {
     userState: { userId, username },
   } = state;
 
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsLoggedIn(!!userId && !!username);
+    setIsSignedIn(!!userId && !!username);
   }, [userId, username]);
 
-  return { isLoggedIn };
+  const handleAfterSignIn = (userData: SignInResponse) => {
+    const {
+      user: { id: userId, username },
+      token,
+    } = userData;
+
+    localstorageService.storeUserInLocalStorage(userData.user, token);
+
+    dispatch({
+      type: UserActionTypeEnum.USER_SIGN_IN,
+      payload: { userId, username },
+    });
+  };
+
+  const handleSignOut = () => {
+    localstorageService.removeUserInLocalstorage();
+
+    dispatch({
+      type: UserActionTypeEnum.USER_SIGN_OUT,
+    });
+  };
+
+  return { isSignedIn, handleAfterSignIn, handleSignOut };
 };

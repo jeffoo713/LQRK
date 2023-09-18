@@ -14,6 +14,12 @@ export const userReducer = (state: UserStateType, action: UserActionType): UserS
         ...state,
         ...action.payload,
       };
+    case UserActionTypeEnum.USER_SIGN_OUT:
+      return {
+        ...state,
+        userId: -1,
+        username: '',
+      };
     default:
       return { ...state };
   }

@@ -1,18 +1,5 @@
 import axios, { AxiosResponse, AxiosInstance } from 'axios';
 
-type User = {
-  token: string;
-  user: {
-    id: number;
-    username: string;
-  };
-};
-
-type SignInResponse =
-  | User & {
-      errors: string[];
-    };
-
 class UserService {
   private axios: AxiosInstance;
 
@@ -48,16 +35,8 @@ class UserService {
       query,
     });
 
-    const { user, token } = response.data.data.signIn;
-    this.storeUserInLocalstorage({ user, token });
-
     return response.data.data.signIn;
   }
-
-  private storeUserInLocalstorage = (user: User) => {
-    localStorage.setItem('user', JSON.stringify({ userId: user.user.id, username: user.user.username }));
-    localStorage.setItem('user-token', JSON.stringify(user.token));
-  };
 }
 
 export default new UserService();
