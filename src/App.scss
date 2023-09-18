@@ -11,19 +11,3 @@ body {
   background-color: $background-color;
   padding: 0 5rem;
 }
-
-.app {
-  width: 100%;
-  min-height: 20rem;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  padding-top: 30vh;
-
-  .app-title {
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-}
