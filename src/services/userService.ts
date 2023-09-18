@@ -55,7 +55,7 @@ class UserService {
   }
 
   private storeUserInLocalstorage = (user: User) => {
-    localStorage.setItem('user', JSON.stringify(user.user));
+    localStorage.setItem('user', JSON.stringify({ userId: user.user.id, username: user.user.username }));
     localStorage.setItem('user-token', JSON.stringify(user.token));
   };
 }

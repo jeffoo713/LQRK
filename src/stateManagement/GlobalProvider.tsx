@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import GlobalContext, { INITIAL_GLOBAL_STATE } from './globalContext';
-import { globalReducer } from './globalReducer';
+import { globalReducer } from './reducers/globalReducer';
 
 type UserProviderProps = {
   children: React.ReactNode;

@@ -1,22 +1,21 @@
 import React, { Fragment, useContext } from 'react';
 import SignIn from './components/SignIn/Signin';
-import GlobalContext from './stateManagement/globalContext';
+import { useAuth } from './hooks/useAuth';
 
 import './app.scss';
 
 const App: React.FC = () => {
-  const { state, dispatch } = useContext(GlobalContext);
-  const { userState } = state;
+  const { isLoggedIn } = useAuth();
 
   return (
     <div className='app'>
-      {!userState.username ? (
+      {!isLoggedIn ? (
         <Fragment>
           <h1 className='app-title'>Welcome to LQRK</h1>
           <SignIn />
         </Fragment>
       ) : (
-        <>loged in!</>
+        <>logged in!</>
       )}
     </div>
   );
