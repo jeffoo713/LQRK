@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import SignIn from './components/SignIn/Signin';
-import { useAuth } from './hooks/useAuth';
 import AppBanner from './components/AppBanner/AppBanner';
+import MyLiquors from './components/MyLiquors/MyLiquors';
+import { useAuth } from './hooks/useAuth';
 
 import './app.scss';
 
@@ -14,26 +15,16 @@ const AppContainer = styled.div<{ $signedIn: boolean }>`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  padding-top: ${props => (props.$signedIn ? '5vh' : '30vh')};
+  padding: ${props => (props.$signedIn ? '0' : '30vh 5vh 5vh 5vh')};
 `;
 
 const App: React.FC = () => {
-  const { isSignedIn, handleSignOut } = useAuth();
+  const { isSignedIn } = useAuth();
 
   return (
     <AppContainer $signedIn={isSignedIn}>
       <AppBanner signedIn={isSignedIn} />
-      {isSignedIn ? (
-        <>
-          logged in!
-          <button type='button' onClick={handleSignOut}>
-            {' '}
-            sign out
-          </button>
-        </>
-      ) : (
-        <SignIn />
-      )}
+      {isSignedIn ? <MyLiquors /> : <SignIn />}
     </AppContainer>
   );
 };
