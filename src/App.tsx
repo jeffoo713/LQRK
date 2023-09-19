@@ -16,6 +16,7 @@ const AppContainer = styled.div<{ $signedIn: boolean }>`
   justify-content: start;
   align-items: center;
   padding: ${props => (props.$signedIn ? '0' : '30vh 5vh 5vh 5vh')};
+  color:color: #373F51;
 `;
 
 const App: React.FC = () => {
