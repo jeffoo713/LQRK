@@ -10,6 +10,10 @@ class LocalStorageService {
     localStorage.removeItem('user');
     localStorage.removeItem('user-token');
   };
+
+  get userToken() {
+    return localStorage.getItem('user-token');
+  }
 }
 
 export default new LocalStorageService();

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import userService from '../../services/userService';
+import GlobalContext from '../../stateManagement/globalContext';
 
 const StyledMyLiquors = styled.div`
   width: 85vw;
@@ -40,7 +42,29 @@ const StyledLiquorItem = styled.div`
   border: 1px solid black;
 `;
 
+// Todo: when initial rendering, make API call to fetch user's liquors with token in localstorage.
+// if 401 status is returned, sign out the user and redirect to sign-in page.
+// if 200 status is returned, display the liquors.
 const MyLiquors = () => {
+  const {
+    state: {
+      userState: { userId },
+    },
+    dispatch,
+  } = useContext(GlobalContext);
+
+  const [liquors, setLiquors] = useState<any[]>([]);
+
+  console.log(liquors);
+  useEffect(() => {
+    getUserLiquorData(userId);
+
+    async function getUserLiquorData(userId: number) {
+      const liquors = await userService.getUserLiquorData(userId);
+      setLiquors(liquors);
+    }
+  }, [userId]);
+
   return (
     <StyledMyLiquors>
       <StyledMyLiquorsTopBar>
@@ -50,8 +74,8 @@ const MyLiquors = () => {
         </StyledAddLiquorButton>
       </StyledMyLiquorsTopBar>
       <StyledLiquorList>
-        {['Yellowdog', 'BlueBuck', 'Revenge', 'Honey Larger', 'Strange fellows', 'Panda', 'Baisu'].map(e => (
-          <StyledLiquorItem key={e}>{e}</StyledLiquorItem>
+        {liquors.map(e => (
+          <StyledLiquorItem key={e.id}>{e.name}</StyledLiquorItem>
         ))}
       </StyledLiquorList>
     </StyledMyLiquors>

@@ -37,6 +37,27 @@ class UserService {
 
     return response.data.data.signIn;
   }
+
+  async getUserLiquorData(userId: number) {
+    const query = `
+      query {
+        user(id: ${userId}) {
+          liquors {
+            id
+            name
+            liquorType
+            rating
+          }
+        }
+      }
+    `;
+
+    const response: AxiosResponse = await this.axios.post(`/graphql`, {
+      query,
+    });
+
+    return response.data.data.user.liquors;
+  }
 }
 
 export default new UserService();
