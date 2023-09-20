@@ -12,10 +12,12 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: './',
   },
   devServer: {
     port: 3333,
+    open: true,
+    hot: true,
   },
   module: {
     rules: [

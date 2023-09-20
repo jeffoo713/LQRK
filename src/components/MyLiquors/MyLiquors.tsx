@@ -28,7 +28,7 @@ const StyledAddLiquorButton = styled.button`
 
 const StyledLiquorList = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
 `;
