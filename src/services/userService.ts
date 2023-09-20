@@ -1,17 +1,13 @@
 import axios, { AxiosResponse, AxiosInstance } from 'axios';
+import localstorageService from './localstorageService';
 
 class UserService {
   private axios: AxiosInstance;
 
   constructor() {
-    const userToken: string = localStorage.getItem('user-token')
-      ? JSON.parse(localStorage.getItem('user-token')!)
-      : null;
-
     this.axios = axios.create({
       baseURL: process.env.USER_SERVICE_BASE_URL,
       timeout: 10000,
-      headers: { Authorization: userToken },
     });
   }
 
@@ -52,9 +48,13 @@ class UserService {
       }
     `;
 
-    const response: AxiosResponse = await this.axios.post(`/graphql`, {
-      query,
-    });
+    const response: AxiosResponse = await this.axios.post(
+      `/graphql`,
+      {
+        query,
+      },
+      { headers: { Authorization: localstorageService.userToken } }
+    );
 
     return response.data.data.user.liquors;
   }

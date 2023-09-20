@@ -63,7 +63,7 @@ const MyLiquors = () => {
       const liquors = await userService.getUserLiquorData(userId);
       setLiquors(liquors);
     }
-  }, [userId]);
+  }, []);
 
   return (
     <StyledMyLiquors>

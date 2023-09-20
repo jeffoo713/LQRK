@@ -12,7 +12,7 @@ class LocalStorageService {
   };
 
   get userToken() {
-    return localStorage.getItem('user-token');
+    return localStorage.getItem('user-token') ? JSON.parse(localStorage.getItem('user-token')!) : '';
   }
 }
 
