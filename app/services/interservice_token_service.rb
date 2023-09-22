@@ -7,8 +7,9 @@ module InterserviceTokenService
 
   include JwtTokenConfig
 
-  def encoded_token(destination_service, resource)
+  def encoded_token(user_id, destination_service, resource)
     payload = {
+      user_id:,
       origin_service: 'user',
       destination_service:,
       resource:,

@@ -13,9 +13,9 @@ class LiquorServiceClient
   end
 
   def fetch_liquors_for_user
-    interservice_token = InterserviceTokenService.encoded_token(DESTINATION_SERVICE, 'liquor')
+    interservice_token = InterserviceTokenService.encoded_token(@user_id, DESTINATION_SERVICE, 'liquor')
 
-    response = @connection.get("/liquors?user_id=#{@user_id}") do |req|
+    response = @connection.get('/liquors') do |req|
       req.headers['Authorization'] = interservice_token
     end
 
@@ -26,7 +26,7 @@ class LiquorServiceClient
                            error_message: "Failed to fetch liquors for user_id: #{@user_id}",
                            response_body: JSON.parse(response.body),
                            response_status: response.status,
-                           time: Time.now
+                           time: Time.zone.now
                          })
       []
     end
