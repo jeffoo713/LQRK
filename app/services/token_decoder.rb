@@ -7,7 +7,7 @@ module TokenDecoder
 
   include JwtTokenConfig
 
-  def decoded_token(token, interservice_token: true)
+  def decoded_token(token, interservice_token: false)
     secret = ENV.fetch(interservice_token ? 'JWT_INTERSERVICE_SECRET_KEY' : 'JWT_SECRET_KEY', 'no_key_found')
 
     JWT.decode(token, secret, true, { algorithm: HMAC_ALGORITHM }).first

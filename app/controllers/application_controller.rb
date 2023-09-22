@@ -5,14 +5,15 @@ class ApplicationController < ActionController::API
 
   def authorized?
     interservice_request = request.headers['X-Interservice-Request'] == 'true'
+    token = request.headers['Authorization']
 
     if interservice_request
-      token = request.headers['Authorization']
-      verified = InterserviceTokenService.verified_request?(token)
-
+      verified, payload = InterserviceTokenService.verified_request?(token)
       render json: { message: 'Unauthorized interservice request' }, status: :unauthorized unless verified
     else
-      render json: { message: 'External request is not allowed' }, status: :not_implemented
+      verified, payload = AuthTokenService.verified_request?(token)
+      render json: { message: 'Unauthorized request' }, status: :unauthorized unless verified
     end
+    @context = payload
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_16_080906) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_22_065312) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,12 +19,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_080906) do
     t.string "name", null: false
     t.string "brand"
     t.integer "year"
-    t.float "alcohol_percentage"
+    t.decimal "alcohol_percentage", precision: 3, scale: 1
     t.string "country"
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "rating"
+    t.decimal "rating", precision: 2, scale: 1
     t.integer "liquor_type", null: false
     t.index ["user_id"], name: "index_liquors_on_user_id"
   end

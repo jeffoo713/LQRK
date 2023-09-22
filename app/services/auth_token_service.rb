@@ -2,16 +2,13 @@
 
 require_relative 'config/jwt_token_config'
 
-module InterserviceTokenService
+module AuthTokenService
   extend self
 
   include JwtTokenConfig
 
   def verified_request?(token)
-    decoded = TokenDecoder.decoded_token(token, interservice_token: true)
-
-    wrong_destination = decoded['destination_service'] != 'liquor'
-    return [false, nil] if wrong_destination
+    decoded = TokenDecoder.decoded_token(token)
 
     [true, decoded]
   rescue JWT::DecodeError => e
@@ -19,7 +16,7 @@ module InterserviceTokenService
                          error: e,
                          error_message: e.message,
                          time: Time.now,
-                         additional_data: { module: 'Interservice`TokenService' }
+                         additional_data: { module: 'AuthTokenService' }
                        })
     false
   end

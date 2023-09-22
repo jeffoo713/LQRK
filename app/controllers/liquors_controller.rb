@@ -1,8 +1,8 @@
 class LiquorsController < ApplicationController
 
   def index
-    user_id = params.require(:user_id)
-    liquors = Liquor.where(user_id:)
+    user_id = @context['user_id']
+    liquors = Liquor.by_user(user_id)
 
     render json: liquors
 
