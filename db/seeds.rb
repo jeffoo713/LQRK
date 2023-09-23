@@ -12,8 +12,8 @@ Liquor.destroy_all
 brands = []
 12.times.each { |_i| brands << Faker::Company.unique.name }
 
-puts 'Start liquor data seeding...'
-(1..3).each do |n|
+puts 'Start liquor data seeding for 10 users...'
+(1..10).each do |n|
 
   puts "Creating liquors for user_id #{n}"
   200.times.each do |_n|

@@ -1,5 +1,16 @@
 class LiquorsController < ApplicationController
 
+  def available_categories
+    user_id = @context['user_id']
+
+    avail_categories = []
+    Liquor.liquor_types.each do |type, index|
+      avail_categories << type if Liquor.by_user(user_id).find_by(liquor_type: index)
+    end
+
+    render json: avail_categories
+  end
+
   def index
     user_id = @context['user_id']
     liquors = Liquor.by_user(user_id)
@@ -8,6 +19,15 @@ class LiquorsController < ApplicationController
 
   rescue ActionController::ParameterMissing => e
     render json: { message: e }, status: 400
+  end
+
+  def filtered
+    user_id = @context['user_id']
+    liquor_type = params['type']
+
+    liquors = Liquor.by_type(user_id, liquor_type)
+
+    render json: liquors
   end
 
   def show
