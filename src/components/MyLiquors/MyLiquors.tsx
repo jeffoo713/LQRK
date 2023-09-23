@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import userService from '../../services/userService';
 import GlobalContext from '../../stateManagement/globalContext';
 import { LiquorActionTypeEnum } from '../../stateManagement/reducers/liquorReducer/liquorActionTypeEnums';
-import { COLORS } from '../../assets/_colors';
+import Button from '../shared/Button';
 
 const StyledMyLiquors = styled.div`
   width: 85vw;
@@ -15,19 +15,6 @@ const StyledMyLiquorsTopBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const StyledAddLiquorButton = styled.button`
-  padding: 0.4rem 0.5rem;
-  border: none;
-  background-color: ${COLORS.FORM.BTN};
-  color: ${COLORS.WHITE};
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:active {
-    background-color: ${COLORS.FORM.BTN_ACTIVATED};
-  }
 `;
 
 const StyledLiquorList = styled.div`
@@ -74,9 +61,11 @@ const MyLiquors = () => {
     <StyledMyLiquors>
       <StyledMyLiquorsTopBar>
         <h2>My Liquors: </h2>
-        <StyledAddLiquorButton>
-          <strong>+</strong> ADD LIQUOR
-        </StyledAddLiquorButton>
+        <Button>
+          <Fragment>
+            <strong>+</strong> ADD LIQUOR
+          </Fragment>
+        </Button>
       </StyledMyLiquorsTopBar>
       <StyledLiquorList>
         {liquors.map(e => (

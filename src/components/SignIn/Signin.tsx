@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import userService from '../../services/userService';
 import { useAuth } from '../../hooks/useAuth';
 import { COLORS } from '../../assets/_colors';
+import Button from '../shared/Button';
 
 const StyledSignIn = styled.form`
   width: 60%;
@@ -28,28 +29,12 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledButton = styled.button`
-  width: 50%;
-  border: 1px solid ${COLORS.FORM.INPUT_BORDER};
-  border-radius: 0.2rem;
-  background-color: ${COLORS.FORM.BTN};
-  font-size: 1rem;
-  padding: 0.5rem;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:active {
-    background-color: ${COLORS.FORM.BTN_ACTIVATED};
-  }
-`;
-
 const SignIn: React.FC = () => {
   const { handleAfterSignIn } = useAuth();
 
   const [formInput, setFormInput] = useState<FormInput>({ username: '' });
   const { username } = formInput;
+  
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
@@ -87,7 +72,9 @@ const SignIn: React.FC = () => {
           placeholder='Start with your username!'
           autoComplete='off'
         />
-        <StyledButton type='submit'>SIGN IN</StyledButton>
+        <Button {...{ type: 'submit' }} forSignIn>
+          SIGN IN
+        </Button>
       </StyledSignIn>
       <a href='/'>
         <span>Create an account!</span>
