@@ -1,11 +1,11 @@
-type ActionType = {
-  type: string;
-  payload?: UserActionPayloadType;
-};
+type ActionType = UserActionType | LiquorActionType;
 
 type GlobalStateType = {
   userState: {
     userId: number;
     username: string;
+  };
+  liquorState: {
+    liquors: Liquor[];
   };
 };

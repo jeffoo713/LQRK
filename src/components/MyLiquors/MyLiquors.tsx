@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import userService from '../../services/userService';
 import GlobalContext from '../../stateManagement/globalContext';
+import { LiquorActionTypeEnum } from '../../stateManagement/reducers/liquorReducer/liquorActionTypeEnums';
 
 const StyledMyLiquors = styled.div`
   width: 85vw;
@@ -49,11 +50,10 @@ const MyLiquors = () => {
   const {
     state: {
       userState: { userId },
+      liquorState: { liquors },
     },
     dispatch,
   } = useContext(GlobalContext);
-
-  const [liquors, setLiquors] = useState<any[]>([]);
 
   console.log(liquors);
   useEffect(() => {
@@ -61,7 +61,11 @@ const MyLiquors = () => {
 
     async function getUserLiquorData(userId: number) {
       const liquors = await userService.getUserLiquorData(userId);
-      setLiquors(liquors);
+
+      dispatch({
+        type: LiquorActionTypeEnum.FETCH_LIQUORS,
+        payload: liquors,
+      });
     }
   }, []);
 
