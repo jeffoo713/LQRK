@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import NavBar from '../NavBar/NavBar';
+import { COLORS } from '../../assets/_colors';
 
 const AppBannerContainer = styled.div<{ $signedIn: boolean }>`
   margin-bottom: 2rem;
@@ -14,7 +15,7 @@ const AppBannerContainer = styled.div<{ $signedIn: boolean }>`
   ${({ $signedIn }) =>
     $signedIn &&
     `
-    background-color: #f0f8ff;
+    background-color: ${COLORS.WHITE};
     padding: 1rem;
   `}
 `;

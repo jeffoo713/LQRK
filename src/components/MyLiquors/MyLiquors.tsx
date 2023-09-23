@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import userService from '../../services/userService';
 import GlobalContext from '../../stateManagement/globalContext';
 import { LiquorActionTypeEnum } from '../../stateManagement/reducers/liquorReducer/liquorActionTypeEnums';
+import { COLORS } from '../../assets/_colors';
 
 const StyledMyLiquors = styled.div`
   width: 85vw;
@@ -19,13 +20,13 @@ const StyledMyLiquorsTopBar = styled.div`
 const StyledAddLiquorButton = styled.button`
   padding: 0.4rem 0.5rem;
   border: none;
-  background-color: #677fb1;
-  color: #f0f8ff;
+  background-color: ${COLORS.FORM.BTN};
+  color: ${COLORS.WHITE};
   border-radius: 4px;
   cursor: pointer;
 
   &:active {
-    background-color: #556ba0;
+    background-color: ${COLORS.FORM.BTN_ACTIVATED};
   }
 `;
 

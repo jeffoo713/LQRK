@@ -1,8 +1,49 @@
 import React, { Fragment, useState } from 'react';
+import styled from 'styled-components';
 import userService from '../../services/userService';
 import { useAuth } from '../../hooks/useAuth';
+import { COLORS } from '../../assets/_colors';
 
-import './signin.scss';
+const StyledSignIn = styled.form`
+  width: 60%;
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+`;
+
+const StyledInput = styled.input`
+  width: 80%;
+  font-size: 1.1rem;
+  padding: 0.4rem;
+  border: 1px solid ${COLORS.FORM.INPUT_BORDER};
+  border-radius: 0.2rem;
+  text-align: center;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const StyledButton = styled.button`
+  width: 50%;
+  border: 1px solid ${COLORS.FORM.INPUT_BORDER};
+  border-radius: 0.2rem;
+  background-color: ${COLORS.FORM.BTN};
+  font-size: 1rem;
+  padding: 0.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: ${COLORS.FORM.BTN_ACTIVATED};
+  }
+`;
 
 const SignIn: React.FC = () => {
   const { handleAfterSignIn } = useAuth();
@@ -37,8 +78,8 @@ const SignIn: React.FC = () => {
 
   return (
     <Fragment>
-      <form className='signin-form' onSubmit={handleSignIn}>
-        <input
+      <StyledSignIn className='signin-form' onSubmit={handleSignIn}>
+        <StyledInput
           type='text'
           name='username'
           value={username}
@@ -46,8 +87,8 @@ const SignIn: React.FC = () => {
           placeholder='Start with your username!'
           autoComplete='off'
         />
-        <button type='submit'>SIGN IN</button>
-      </form>
+        <StyledButton type='submit'>SIGN IN</StyledButton>
+      </StyledSignIn>
       <a href='/'>
         <span>Create an account!</span>
       </a>

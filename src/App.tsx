@@ -4,8 +4,9 @@ import SignIn from './components/SignIn/Signin';
 import AppBanner from './components/AppBanner/AppBanner';
 import MyLiquors from './components/MyLiquors/MyLiquors';
 import { useAuth } from './hooks/useAuth';
+import { COLORS } from './assets/_colors';
 
-import './app.scss';
+import './app.css';
 
 const AppContainer = styled.div<{ $signedIn: boolean }>`
   width: 100%;
@@ -16,7 +17,7 @@ const AppContainer = styled.div<{ $signedIn: boolean }>`
   justify-content: start;
   align-items: center;
   padding: ${props => (props.$signedIn ? '0' : '30vh 5vh 5vh 5vh')};
-  color:color: #373F51;
+  color:color: ${COLORS.BLACK};
 `;
 
 const App: React.FC = () => {
