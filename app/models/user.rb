@@ -14,8 +14,6 @@ class User < ApplicationRecord
   def username_is_not_reserved
     reserved_usernames = %w[jaamongsoda superuser]
 
-    return unless reserved_usernames.include?(username)
-
-    errors.add(:username, 'is reserved')
+    errors.add(:username, 'is reserved') if reserved_usernames.include?(username)
   end
 end

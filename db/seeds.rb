@@ -6,7 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create!(username: "jaamongsoda")
-User.create!(username: "purple_melon")
-User.create!(username: "Creamy_engine_oil")
-User.create!(username: "cheezcrust_pizza")
+puts 'Start user data seeding...'
+
+puts "Start creating 10 users..."
+%w[jaamongsoda cheezcrust purplemelon mmm snowybeach fasturtle Reilly Heller Kozey Rempel].each do |username|
+  User.create!(username:)
+end
+puts 'User data seeding complete!'
