@@ -60,7 +60,7 @@ const MyLiquors = () => {
   return (
     <StyledMyLiquors>
       <StyledMyLiquorsTopBar>
-        <h2>My Liquors: </h2>
+        <h2>My liquors: </h2>
         <Button>
           <Fragment>
             <strong>+</strong> ADD LIQUOR

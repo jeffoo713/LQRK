@@ -7,7 +7,7 @@ type ButtonType = {
   forSignIn?: boolean;
 };
 
-const StyledAddLiquorButton = styled.button<{ $forSignIn?: boolean }>`
+const StyledButton = styled.button<{ $forSignIn?: boolean }>`
   width: ${props => (props.$forSignIn ? '50%' : 'fit-content')};
   border: ${props => (props.$forSignIn ? `1px solid ${COLORS.FORM.INPUT_BORDER};` : 'none')};
   font-size: ${props => props.$forSignIn && '1rem'};
@@ -25,11 +25,7 @@ const StyledAddLiquorButton = styled.button<{ $forSignIn?: boolean }>`
 const Button: React.FC<ButtonType> = (props: ButtonType) => {
   const { children, forSignIn } = props;
 
-  return (
-    <StyledAddLiquorButton $forSignIn={forSignIn}>
-      {children}
-    </StyledAddLiquorButton>
-  );
+  return <StyledButton $forSignIn={forSignIn}>{children}</StyledButton>;
 };
 
 export default Button;
