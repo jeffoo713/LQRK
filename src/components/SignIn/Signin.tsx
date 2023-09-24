@@ -34,13 +34,13 @@ const SignIn: React.FC = () => {
 
   const [formInput, setFormInput] = useState<FormInput>({ username: '' });
   const { username } = formInput;
-  
+
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
     if (!username) return;
 
-    const res = await userService.signIn(username);
+    const res = await userService.signIn(username.toLocaleLowerCase());
 
     setFormInput(prev => ({
       ...prev,

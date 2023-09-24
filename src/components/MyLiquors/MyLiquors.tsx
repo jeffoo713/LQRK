@@ -38,12 +38,11 @@ const MyLiquors = () => {
   const {
     state: {
       userState: { userId },
-      liquorState: { liquors },
+      liquorState: { categories },
     },
     dispatch,
   } = useContext(GlobalContext);
 
-  console.log(liquors);
   useEffect(() => {
     getUserLiquorData(userId);
 
@@ -68,8 +67,8 @@ const MyLiquors = () => {
         </Button>
       </StyledMyLiquorsTopBar>
       <StyledLiquorList>
-        {liquors.map(e => (
-          <StyledLiquorItem key={e.id}>{e.name}</StyledLiquorItem>
+        {Array.from(categories).map((cat, idx) => (
+          <StyledLiquorItem key={idx}>{cat}</StyledLiquorItem>
         ))}
       </StyledLiquorList>
     </StyledMyLiquors>

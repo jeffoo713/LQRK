@@ -1,7 +1,14 @@
 import { LiquorActionTypeEnum } from './liquorActionTypeEnums';
+import { liquorProcessor } from '../../../helpers/liquorProcessor';
 
 export const INITIAL_LIQUOR_STATE: LiquorStateType = {
-  liquors: [],
+  categories: new Set<LiquorType>(),
+  beer: [],
+  wine: [],
+  spirit: [],
+  liqueur: [],
+  asian_spirit: [],
+  others: [],
 };
 
 const isLiquorActionType = (action: ActionType): action is LiquorActionType => {
@@ -15,7 +22,7 @@ export const liquorReducer = (state: LiquorStateType, action: ActionType): Liquo
     case LiquorActionTypeEnum.FETCH_LIQUORS:
       return {
         ...state,
-        liquors: action.payload || [],
+        ...liquorProcessor.getSortedLiquorsByType(action.payload!),
       };
     default:
       return { ...state };
