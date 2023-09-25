@@ -4,37 +4,28 @@ import userService from '../../services/userService';
 import GlobalContext from '../../stateManagement/globalContext';
 import { LiquorActionTypeEnum } from '../../stateManagement/reducers/liquorReducer/liquorActionTypeEnums';
 import Button from '../shared/Button';
+import CategoryMenu from './CategroyMenu';
 
 const StyledMyLiquors = styled.div`
   width: 85vw;
-  max-width: 1100px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const StyledMyLiquorsTopBar = styled.div`
+  width: 100%;
   margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-const StyledLiquorList = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-`;
-
-const StyledLiquorItem = styled.div`
-  aspect-ratio: 1 / 1;
-  width: 19%;
-
-  border: 1px solid black;
-`;
-
 // Todo: when initial rendering, make API call to fetch user's liquors with token in localstorage.
 // if 401 status is returned, sign out the user and redirect to sign-in page.
 // if 200 status is returned, display the liquors.
-const MyLiquors = () => {
+const MyLiquors: React.FC = () => {
   const {
     state: {
       userState: { userId },
@@ -66,11 +57,7 @@ const MyLiquors = () => {
           </Fragment>
         </Button>
       </StyledMyLiquorsTopBar>
-      <StyledLiquorList>
-        {Array.from(categories).map((cat, idx) => (
-          <StyledLiquorItem key={idx}>{cat}</StyledLiquorItem>
-        ))}
-      </StyledLiquorList>
+      <CategoryMenu />
     </StyledMyLiquors>
   );
 };

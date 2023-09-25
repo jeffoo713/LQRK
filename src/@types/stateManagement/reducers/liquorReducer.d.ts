@@ -1,5 +1,7 @@
 type LiquorType = 'beer' | 'wine' | 'spirit' | 'liqueur' | 'asian_spirit' | 'others';
 
+type LiquorCategoryType = Set<LiquorType>;
+
 type Liquor = {
   id: string;
   name: string;
@@ -13,7 +15,7 @@ type Liquor = {
 };
 
 type LiquorStateType = {
-  categories: Set<LiquorType>;
+  categories: LiquorCategoryType;
   beer: Liquor[];
   wine: Liquor[];
   spirit: Liquor[];
