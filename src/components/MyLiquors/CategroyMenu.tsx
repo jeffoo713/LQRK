@@ -32,7 +32,6 @@ const CategoryMenu: React.FC<CategoryMenuType> = ({}: CategoryMenuType) => {
     <StyledCategoryMenu>
       {allCategoryNames.map(catName => (
         <CategoryItem
-          {...{ className: catName }}
           key={catName}
           categoryName={TranslatedLiquorTypeEnums[catName]}
           inUse={isCategoryInUse(catName)}
