@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { COLORS } from '../../assets/_colors';
+import { COLORS } from '../../assets/styles';
 
 type ButtonType = {
   children: ReactElement | string;

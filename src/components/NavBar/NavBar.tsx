@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useAuth } from '../../hooks/useAuth';
-import { COLORS } from '../../assets/_colors';
+import { COLORS } from '../../assets/styles';
 import GlobalContext from '../../stateManagement/globalContext';
 
 const StyledNavBar = styled.div`

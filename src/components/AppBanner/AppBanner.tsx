@@ -1,15 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import NavBar from '../NavBar/NavBar';
-import { COLORS } from '../../assets/_colors';
+import { STYLES, COLORS } from '../../assets/styles';
 
 const AppBannerContainer = styled.div<{ $signedIn: boolean }>`
+  ${STYLES.FLEX_COLUMN_CENTER}
   margin-bottom: 2rem;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
 
   ${({ $signedIn }) =>

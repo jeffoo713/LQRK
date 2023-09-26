@@ -4,7 +4,7 @@ import SignIn from './components/SignIn/Signin';
 import AppBanner from './components/AppBanner/AppBanner';
 import MyLiquors from './components/MyLiquors/MyLiquors';
 import { useAuth } from './hooks/useAuth';
-import { COLORS } from './assets/_colors';
+import { COLORS } from './assets/styles/_colors';
 
 import './app.css';
 

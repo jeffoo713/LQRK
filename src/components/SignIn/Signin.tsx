@@ -2,16 +2,13 @@ import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
 import userService from '../../services/userService';
 import { useAuth } from '../../hooks/useAuth';
-import { COLORS } from '../../assets/_colors';
 import Button from '../shared/Button';
+import { STYLES, COLORS } from '../../assets/styles';
 
 const StyledSignIn = styled.form`
+  ${STYLES.FLEX_COLUMN_CENTER}
   width: 60%;
   max-width: 30rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
 `;

@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import GlobalContext from '../../stateManagement/globalContext';
 import CategoryItem from './CategoryItem';
 import styled from 'styled-components';
-import { TranslatedLiquorTypeEnums } from './liquorTypeEnum';
 
 type CategoryMenuType = {};
 
@@ -33,7 +32,7 @@ const CategoryMenu: React.FC<CategoryMenuType> = ({}: CategoryMenuType) => {
       {allCategoryNames.map(catName => (
         <CategoryItem
           key={catName}
-          categoryName={TranslatedLiquorTypeEnums[catName]}
+          categoryName={catName}
           inUse={isCategoryInUse(catName)}
         />
       ))}
