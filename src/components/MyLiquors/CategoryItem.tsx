@@ -56,6 +56,13 @@ const UseInfoOverlay = styled.div`
     top: 50%;
     white-space: nowrap;
     color: ${COLORS.WHITE};
+    font-size: 2.125rem;
+    font-weight: 600;
+  }
+
+  .category-count {
+    font-size: 1.875rem;
+    font-weight: 600;
   }
 `;
 
@@ -76,8 +83,8 @@ const CategoryItem: React.FC<CategoryItemType> = ({ categoryName, inUse }: Categ
       {inUse ? (
         <UseInfoOverlay className='use-info-overlay'>
           <div className='category-info'>
-            <h2 className='category-name'>{TranslatedLiquorTypeEnums[categoryName]}</h2>
-            <h3>{`(${liquorState[categoryName].length})`}</h3>
+            <p className='category-name'>{TranslatedLiquorTypeEnums[categoryName]}</p>
+            <p className='category-count'>{`(${liquorState[categoryName].length})`}</p>
           </div>
         </UseInfoOverlay>
       ) : (
