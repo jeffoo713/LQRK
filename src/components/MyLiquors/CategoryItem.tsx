@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import beerImg from '../../assets/images/beerMenuImg.png';
+import wineImg from '../../assets/images/wineMenuImg.png';
+import spiritImg from '../../assets/images/spiritMenuImg.png';
+import liqueurImg from '../../assets/images/liqueurMenuImg.png';
+import asianSpiritImg from '../../assets/images/asianSpiritMenuImg.png';
+import othersImg from '../../assets/images/othersMenuImg.png';
 import addImg from '../../assets/images/addImgg.png';
 import GlobalContext from '../../stateManagement/globalContext';
 import { TranslatedLiquorTypeEnums } from './liquorTypeEnum';
@@ -29,7 +34,7 @@ const StyledCategoryItem = styled.div`
 
     .add-overlay {
       display: block;
-      opacity: 40%;
+      opacity: 50%;
     }
   }
 
@@ -73,13 +78,22 @@ const AddOverlay = styled.div`
   background-size: cover;
 `;
 
+const CATEGORY_IMG = {
+  beer: beerImg,
+  wine: wineImg,
+  spirit: spiritImg,
+  liqueur: liqueurImg,
+  asian_spirit: asianSpiritImg,
+  others: othersImg,
+};
+
 const CategoryItem: React.FC<CategoryItemType> = ({ categoryName, inUse }: CategoryItemType) => {
   const {
     state: { liquorState },
   } = useContext(GlobalContext);
 
   return (
-    <StyledCategoryItem style={{ backgroundImage: `url(${beerImg})`, backgroundSize: 'cover' }}>
+    <StyledCategoryItem style={{ backgroundImage: `url(${CATEGORY_IMG[categoryName]})`, backgroundSize: 'cover' }}>
       {inUse ? (
         <UseInfoOverlay className='use-info-overlay'>
           <div className='category-info'>
