@@ -11,6 +11,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
+    publicPath: '/', // This ensures assets (like your JavaScript bundle) are always served from the root
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
