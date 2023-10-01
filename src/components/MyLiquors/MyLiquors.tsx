@@ -37,10 +37,7 @@ const MyLiquors: React.FC = () => {
         payload: liquors,
       });
     }
-    return (() => {
-      
-    })
-  }, [liquors]);
+  }, [dispatch, liquors]);
 
   return (
     <StyledMyLiquors>

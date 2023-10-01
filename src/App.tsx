@@ -25,7 +25,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     isSignedIn ? navigate('/my-liquors') : navigate('/auth');
-  }, [isSignedIn]);
+  }, [isSignedIn, navigate]);
 
   return (
     <AppContainer $signedIn={isSignedIn}>

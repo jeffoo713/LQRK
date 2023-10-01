@@ -3,8 +3,6 @@ import GlobalContext from '../../stateManagement/globalContext';
 import CategoryItem from './CategoryItem';
 import styled from 'styled-components';
 
-type CategoryMenuType = {};
-
 const StyledCategoryMenu = styled.div`
   width: 100%;
   max-width: 900px;
@@ -16,7 +14,7 @@ const StyledCategoryMenu = styled.div`
   justify-content: center;
 `;
 
-const CategoryMenu: React.FC<CategoryMenuType> = ({}: CategoryMenuType) => {
+const CategoryMenu: React.FC = () => {
   const {
     state: {
       liquorState: { categories },
