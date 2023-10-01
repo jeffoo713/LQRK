@@ -1,3 +1,4 @@
+import { LiquorActionTypeEnum } from '../liquorReducer/liquorActionTypeEnums';
 import { UserActionTypeEnum } from './userActionTypeEnums';
 
 const localstorageUser: UserStateType = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null;
@@ -7,12 +8,12 @@ export const INITIAL_USER_STATE: UserStateType = {
   username: localstorageUser?.username || '',
 };
 
-const isUserActionType = (action: ActionType): action is UserActionType => {
-  return action.type in UserActionTypeEnum;
+const isLiquorActionType = (action: ActionType): action is LiquorActionType => {
+  return action.type in LiquorActionTypeEnum;
 };
 
 export const userReducer = (state: UserStateType, action: ActionType): UserStateType => {
-  if (!isUserActionType(action)) return { ...state };
+  if (isLiquorActionType(action)) return { ...state };
 
   switch (action.type) {
     case UserActionTypeEnum.USER_SIGN_IN:
