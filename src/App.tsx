@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import SignIn from './components/SignIn/Signin';
 import AppBanner from './components/AppBanner/AppBanner';
-import MyLiquors from './components/MyLiquors/MyLiquors';
 import { useAuth } from './hooks/useAuth';
 import { COLORS } from './assets/styles/_colors';
 
@@ -22,11 +21,16 @@ const AppContainer = styled.div<{ $signedIn: boolean }>`
 
 const App: React.FC = () => {
   const { isSignedIn } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isSignedIn ? navigate('/my-liquors') : navigate('/auth');
+  }, [isSignedIn]);
 
   return (
     <AppContainer $signedIn={isSignedIn}>
       <AppBanner signedIn={isSignedIn} />
-      {isSignedIn ? <MyLiquors /> : <SignIn />}
+      <Outlet />
     </AppContainer>
   );
 };

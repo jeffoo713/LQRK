@@ -17,6 +17,7 @@ module.exports = {
     port: 3333,
     open: true,
     hot: true,
+    historyApiFallback: true, // fall back to index.tsx when no route is available
   },
   module: {
     rules: [
