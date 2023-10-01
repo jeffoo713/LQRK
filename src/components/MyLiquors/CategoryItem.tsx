@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import beerImg from '../../assets/images/beerMenuImg.png';
 import wineImg from '../../assets/images/wineMenuImg.png';
@@ -8,7 +9,7 @@ import asianSpiritImg from '../../assets/images/asianSpiritMenuImg.png';
 import othersImg from '../../assets/images/othersMenuImg.png';
 import addImg from '../../assets/images/addImgg.png';
 import GlobalContext from '../../stateManagement/globalContext';
-import { TranslatedLiquorTypeEnums } from './liquorTypeEnum';
+import { TranslatedLiquorTypeEnums } from '../../enums/liquorEnums/liquorTypeEnum';
 import { STYLES, COLORS } from '../../assets/styles';
 
 type CategoryItemType = {
@@ -96,10 +97,12 @@ const CategoryItem: React.FC<CategoryItemType> = ({ categoryName, inUse }: Categ
     <StyledCategoryItem style={{ backgroundImage: `url(${CATEGORY_IMG[categoryName]})`, backgroundSize: 'cover' }}>
       {inUse ? (
         <UseInfoOverlay className='use-info-overlay'>
-          <div className='category-info'>
-            <p className='category-name'>{TranslatedLiquorTypeEnums[categoryName]}</p>
-            <p className='category-count'>{`(${liquorState[categoryName].length})`}</p>
-          </div>
+          <Link to={`${categoryName}`} style={{ width: '100%', height: '100%' }}>
+            <div className='category-info'>
+              <p className='category-name'>{TranslatedLiquorTypeEnums[categoryName]}</p>
+              <p className='category-count'>{`(${liquorState[categoryName].length})`}</p>
+            </div>
+          </Link>
         </UseInfoOverlay>
       ) : (
         <AddOverlay className='add-overlay' />

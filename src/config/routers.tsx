@@ -1,8 +1,11 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+
 import App from '../App';
 import SignIn from '../components/SignIn/Signin';
 import MyLiquors from '../components/MyLiquors/MyLiquors';
+import LiquorPage from '../components/LiquorPage/LIquorPage';
+
 import { getUserLiquorData } from './routeLoaders/myLIquorsLoader';
 
 export const router = createBrowserRouter([
@@ -20,6 +23,10 @@ export const router = createBrowserRouter([
         path: 'my-liquors',
         loader: async () => await getUserLiquorData(),
         element: <MyLiquors />,
+      },
+      {
+        path: 'my-liquors/:liquorType',
+        element: <LiquorPage />,
       },
     ],
   },

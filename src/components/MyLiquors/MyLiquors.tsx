@@ -41,14 +41,14 @@ const MyLiquors: React.FC = () => {
 
   return (
     <StyledMyLiquors>
-      <StyledMyLiquorsTopBar>
+      {/* <StyledMyLiquorsTopBar>
         <h2>My liquors: </h2>
         <Button>
           <Fragment>
             <strong>+</strong> ADD LIQUOR
           </Fragment>
         </Button>
-      </StyledMyLiquorsTopBar>
+      </StyledMyLiquorsTopBar> */}
       <CategoryMenu />
     </StyledMyLiquors>
   );

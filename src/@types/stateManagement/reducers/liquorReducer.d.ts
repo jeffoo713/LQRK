@@ -15,13 +15,9 @@ type Liquor = {
 };
 
 type LiquorStateType = {
+  [key in LiquorType]: Liquor[];
+} & {
   categories: LiquorCategoryType;
-  beer: Liquor[];
-  wine: Liquor[];
-  spirit: Liquor[];
-  liqueur: Liquor[];
-  asian_spirit: Liquor[];
-  others: Liquor[];
 };
 
 type LiquorActionPayloadType = Liquor[];
