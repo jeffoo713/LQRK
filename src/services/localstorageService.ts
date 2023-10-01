@@ -11,8 +11,12 @@ class LocalStorageService {
     localStorage.removeItem('user-token');
   };
 
-  get userToken() {
+  get userToken(): string | null {
     return localStorage.getItem('user-token') ? JSON.parse(localStorage.getItem('user-token')!) : '';
+  }
+
+  get userData(): { userId: number; username: string } | null {
+    return localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')!);
   }
 }
 

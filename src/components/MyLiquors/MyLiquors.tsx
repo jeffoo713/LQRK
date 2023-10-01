@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import styled from 'styled-components';
-import userService from '../../services/userService';
 import GlobalContext from '../../stateManagement/globalContext';
 import { LiquorActionTypeEnum } from '../../stateManagement/reducers/liquorReducer/liquorActionTypeEnums';
 import Button from '../shared/Button';
@@ -26,26 +26,21 @@ const StyledMyLiquorsTopBar = styled.div`
 // if 401 status is returned, sign out the user and redirect to sign-in page.
 // if 200 status is returned, display the liquors.
 const MyLiquors: React.FC = () => {
-  const {
-    state: {
-      userState: { userId },
-      liquorState: { categories },
-    },
-    dispatch,
-  } = useContext(GlobalContext);
+  const { dispatch } = useContext(GlobalContext);
+
+  const liquors = useLoaderData() as LiquorActionPayloadType;
 
   useEffect(() => {
-    getUserLiquorData(userId);
-
-    async function getUserLiquorData(userId: number) {
-      const liquors = await userService.getUserLiquorData(userId);
-
+    if (liquors) {
       dispatch({
         type: LiquorActionTypeEnum.FETCH_LIQUORS,
         payload: liquors,
       });
     }
-  }, []);
+    return (() => {
+      
+    })
+  }, [liquors]);
 
   return (
     <StyledMyLiquors>
