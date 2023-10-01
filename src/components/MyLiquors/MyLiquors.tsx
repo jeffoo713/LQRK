@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import styled from 'styled-components';
 import GlobalContext from '../../stateManagement/globalContext';
 import { LiquorActionTypeEnum } from '../../stateManagement/reducers/liquorReducer/liquorActionTypeEnums';
-import CategoryMenu from './CategroyMenu';
 
 const StyledMyLiquors = styled.div`
   width: 85vw;
@@ -12,7 +11,6 @@ const StyledMyLiquors = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-
 
 // Todo: when initial rendering, make API call to fetch user's liquors with token in localstorage.
 // if 401 status is returned, sign out the user and redirect to sign-in page.
@@ -33,7 +31,7 @@ const MyLiquors: React.FC = () => {
 
   return (
     <StyledMyLiquors>
-      <CategoryMenu />
+      <Outlet />
     </StyledMyLiquors>
   );
 };

@@ -1,9 +1,10 @@
 import React, { Fragment, useContext } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import styled from 'styled-components';
 import GlobalContext from '../../stateManagement/globalContext';
 import { TranslatedLiquorTypeEnums } from '../../enums/liquorEnums/liquorTypeEnum';
-import styled from 'styled-components';
 import Button from '../shared/Button';
+import BreadCrumnbs from '../BreadCrumbs/BreadCrumbs';
 
 const StyledMyLiquorsTopBar = styled.div`
   width: 100%;
@@ -25,7 +26,8 @@ const LiquorPage = () => {
   };
 
   return (
-    <div style={{width: '85vw'}}>
+    <div style={{ width: '85vw' }}>
+      <BreadCrumnbs />
       {isValidLiquorType(liquorType) ? (
         <div>
           <StyledMyLiquorsTopBar>

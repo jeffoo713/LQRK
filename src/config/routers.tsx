@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { Link, Params, Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
 import App from '../App';
 import SignIn from '../components/SignIn/Signin';
@@ -7,6 +7,7 @@ import MyLiquors from '../components/MyLiquors/MyLiquors';
 import LiquorPage from '../components/LiquorPage/LIquorPage';
 
 import { getUserLiquorData } from './routeLoaders/myLIquorsLoader';
+import CategoryMenu from '../components/MyLiquors/CategroyMenu';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,14 +20,17 @@ export const router = createBrowserRouter(
         handle={{
           crumb: () => <Link to='/my-liquors'>My liquors</Link>,
         }}
-      />
-      <Route
-        path='my-liquors/:liquorType'
-        element={<LiquorPage />}
-        handle={{
-          crumb: (data: any) => <span>{data}</span>,
-        }}
-      />
+      >
+        <Route index element={<CategoryMenu />} />
+        <Route
+          path=':liquorType'
+          element={<LiquorPage />}
+          loader={loaderData => loaderData.params}
+          handle={{
+            crumb: (params: Params<string>) => <span>{params.liquorType}</span>,
+          }}
+        />
+      </Route>
     </Route>
   )
 );
