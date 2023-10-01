@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import SignIn from '../components/SignIn/Signin';
 import MyLiquors from '../components/MyLiquors/MyLiquors';
-import { getUserLiquorData } from './routerLoaders/myLIquorsLoader';
+import { getUserLiquorData } from './routeLoaders/myLIquorsLoader';
 
 export const router = createBrowserRouter([
   {
