@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import GlobalContext from '../../stateManagement/globalContext';
@@ -33,14 +33,18 @@ const LiquorPage = () => {
           <StyledMyLiquorsTopBar>
             <h2>{TranslatedLiquorTypeEnums[liquorType]}: </h2>
             <Button>
-              <Fragment>
+              <span>
                 <strong>+</strong> ADD LIQUOR
-              </Fragment>
+              </span>
             </Button>
           </StyledMyLiquorsTopBar>
-          {liquorState[liquorType].map(r => (
-            <p key={r.id}>{r.name}</p>
-          ))}
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'wrap' }}>
+            {liquorState[liquorType].map(r => (
+              <div key={r.id} style={{ width: '150px', aspectRatio: '1 / 1', border: '1px solid black' }}>
+                <p>{r.name}</p>
+              </div>
+            ))}
+          </div>
         </div>
       ) : (
         <Navigate to='..' relative='path' />

@@ -5,9 +5,10 @@ import App from '../App';
 import SignIn from '../components/SignIn/Signin';
 import MyLiquors from '../components/MyLiquors/MyLiquors';
 import LiquorPage from '../components/LiquorPage/LIquorPage';
+import CategoryMenu from '../components/MyLiquors/CategroyMenu';
 
 import { getUserLiquorData } from './routeLoaders/myLIquorsLoader';
-import CategoryMenu from '../components/MyLiquors/CategroyMenu';
+import { TranslatedLiquorTypeEnums } from '../enums/liquorEnums/liquorTypeEnum';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,7 +19,7 @@ export const router = createBrowserRouter(
         loader={async () => await getUserLiquorData()}
         element={<MyLiquors />}
         handle={{
-          crumb: () => <Link to='/my-liquors'>My liquors</Link>,
+          crumb: () => <Link to='/my-liquors'>Categories</Link>,
         }}
       >
         <Route index element={<CategoryMenu />} />
@@ -27,7 +28,9 @@ export const router = createBrowserRouter(
           element={<LiquorPage />}
           loader={loaderData => loaderData.params}
           handle={{
-            crumb: (params: Params<string>) => <span>{params.liquorType}</span>,
+            crumb: (params: Params<string>) => (
+              <span>{TranslatedLiquorTypeEnums[params.liquorType! as LiquorType]}</span>
+            ),
           }}
         />
       </Route>

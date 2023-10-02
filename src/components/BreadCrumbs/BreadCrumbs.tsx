@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useMatches } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledBreadCrumbs = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+`;
+
+const StyledBreadCrumb = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+`;
 
 const BreadCrumnbs = () => {
   const matches = useMatches();
-  const crumbs = matches
-    // first get rid of any matches that don't have handle and crumb
-    .filter((match: any) => Boolean(match.handle?.crumb))
-    // now map them into an array of elements, passing the loader
-    // data to each one
-    .map((match: any) => match.handle.crumb(match.data));
+  const crumbs = useMemo(
+    () =>
+      matches.filter((match: any) => Boolean(match.handle?.crumb)).map((match: any) => match.handle.crumb(match.data)),
+    [matches]
+  );
 
-    console.log('matches:', matches)
-    console.log('crumbs:', crumbs)
   return (
-    <ol>
+    <StyledBreadCrumbs>
       {crumbs.map((crumb, index) => (
-        <li key={index}>{crumb}</li>
+        <StyledBreadCrumb key={index}>
+          <p>{'>'}</p>
+          <p>{crumb}</p>
+        </StyledBreadCrumb>
       ))}
-    </ol>
+    </StyledBreadCrumbs>
   );
 };
 
