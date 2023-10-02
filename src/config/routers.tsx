@@ -4,7 +4,7 @@ import { Link, Params, Route, createBrowserRouter, createRoutesFromElements } fr
 import App from '../App';
 import SignIn from '../components/SignIn/Signin';
 import MyLiquors from '../components/MyLiquors/MyLiquors';
-import LiquorPage from '../components/LiquorPage/LIquorPage';
+import LiquorPageContainer from '../components/LiquorPage/LiquorPageContainer';
 import CategoryMenu from '../components/MyLiquors/CategroyMenu';
 
 import { getUserLiquorData } from './routeLoaders/myLIquorsLoader';
@@ -25,7 +25,7 @@ export const router = createBrowserRouter(
         <Route index element={<CategoryMenu />} />
         <Route
           path=':liquorType'
-          element={<LiquorPage />}
+          element={<LiquorPageContainer />}
           loader={loaderData => loaderData.params}
           handle={{
             crumb: (params: Params<string>) => (

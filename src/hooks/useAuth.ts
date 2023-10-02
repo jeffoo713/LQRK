@@ -12,7 +12,7 @@ export const useAuth = () => {
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsSignedIn(!!userId && !!username);
+    setIsSignedIn(Boolean(userId) && Boolean(username));
   }, [userId, username]);
 
   const handleAfterSignIn = (userData: SignInResponse) => {
