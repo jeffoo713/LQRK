@@ -19,7 +19,11 @@ const LiquorPageContainer = () => {
   return (
     <StyledLiquorPageContainer>
       <BreadCrumnbs />
-      {isValidLiquorType(liquorType) ? <LiquorPage liquorType={liquorType} /> : <Navigate to='..' relative='path' />}
+      {isValidLiquorType(liquorType) ? (
+        <LiquorPage liquorType={liquorType} />
+      ) : (
+        <Navigate to='..' relative='path' />
+      )}
     </StyledLiquorPageContainer>
   );
 };

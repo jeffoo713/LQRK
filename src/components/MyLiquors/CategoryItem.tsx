@@ -94,7 +94,9 @@ const CategoryItem: React.FC<CategoryItemType> = ({ categoryName, inUse }: Categ
   } = useContext(GlobalContext);
 
   return (
-    <StyledCategoryItem style={{ backgroundImage: `url(${CATEGORY_IMG[categoryName]})`, backgroundSize: 'cover' }}>
+    <StyledCategoryItem
+      style={{ backgroundImage: `url(${CATEGORY_IMG[categoryName]})`, backgroundSize: 'cover' }}
+    >
       {inUse ? (
         <UseInfoOverlay className='use-info-overlay'>
           <Link to={`${categoryName}`} style={{ width: '100%', height: '100%' }}>

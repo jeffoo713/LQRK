@@ -1,7 +1,9 @@
 import { LiquorActionTypeEnum } from '../liquorReducer/liquorActionTypeEnums';
 import { UserActionTypeEnum } from './userActionTypeEnums';
 
-const localstorageUser: UserStateType = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null;
+const localstorageUser: UserStateType = localStorage.getItem('user')
+  ? JSON.parse(localStorage.getItem('user')!)
+  : null;
 
 export const INITIAL_USER_STATE: UserStateType = {
   userId: localstorageUser?.userId || -1,

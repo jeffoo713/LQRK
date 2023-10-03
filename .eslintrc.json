@@ -16,10 +16,12 @@
   },
   "plugins": ["@typescript-eslint", "react"],
   "ignorePatterns": ["webpack.config.js"],
+  // 0: off, 1: warn, 2: error
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error",
-    "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "^React$" }],
-    "@typescript-eslint/no-explicit-any": "off"
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": 2,
+    "@typescript-eslint/no-unused-vars": [2, { "varsIgnorePattern": "^React$" }],
+    "@typescript-eslint/no-explicit-any": "off",
+    "max-len": [1, { "code": 110 }]
   }
 }

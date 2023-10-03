@@ -28,11 +28,7 @@ const CategoryMenu: React.FC = () => {
   return (
     <StyledCategoryMenu>
       {allCategoryNames.map(catName => (
-        <CategoryItem
-          key={catName}
-          categoryName={catName}
-          inUse={isCategoryInUse(catName)}
-        />
+        <CategoryItem key={catName} categoryName={catName} inUse={isCategoryInUse(catName)} />
       ))}
     </StyledCategoryMenu>
   );

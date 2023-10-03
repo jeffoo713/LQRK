@@ -18,7 +18,9 @@ const BreadCrumnbs = () => {
   const matches = useMatches();
   const crumbs = useMemo(
     () =>
-      matches.filter((match: any) => Boolean(match.handle?.crumb)).map((match: any) => match.handle.crumb(match.data)),
+      matches
+        .filter((match: any) => Boolean(match.handle?.crumb))
+        .map((match: any) => match.handle.crumb(match.data)),
     [matches]
   );
 

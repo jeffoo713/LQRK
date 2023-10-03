@@ -21,7 +21,9 @@ const AppBanner: React.FC<AppBannerType> = (props: AppBannerType) => {
   const { signedIn } = props;
 
   return (
-    <AppBannerContainer $signedIn={signedIn}>{signedIn ? <NavBar /> : <h1>Welcome to LQRK</h1>}</AppBannerContainer>
+    <AppBannerContainer $signedIn={signedIn}>
+      {signedIn ? <NavBar /> : <h1>Welcome to LQRK</h1>}
+    </AppBannerContainer>
   );
 };
 
