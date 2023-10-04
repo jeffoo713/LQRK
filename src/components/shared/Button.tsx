@@ -5,9 +5,10 @@ import { COLORS } from '../../assets/styles';
 type ButtonType = {
   children: ReactElement | string;
   forSignIn?: boolean;
+  onClick?: () => void;
 };
 
-const StyledButton = styled.button<{ $forSignIn?: boolean }>`
+const StyledButton = styled.button<{ $forSignIn?: boolean; $onClick?: any }>`
   width: ${props => (props.$forSignIn ? '50%' : 'fit-content')};
   border: ${props => (props.$forSignIn ? `1px solid ${COLORS.FORM.INPUT_BORDER};` : 'none')};
   font-size: ${props => props.$forSignIn && '1rem'};
@@ -22,10 +23,12 @@ const StyledButton = styled.button<{ $forSignIn?: boolean }>`
   }
 `;
 
-const Button: React.FC<ButtonType> = (props: ButtonType) => {
-  const { children, forSignIn } = props;
-
-  return <StyledButton $forSignIn={forSignIn}>{children}</StyledButton>;
+const Button: React.FC<ButtonType> = ({ children, forSignIn, onClick }: ButtonType) => {
+  return (
+    <StyledButton $forSignIn={forSignIn} onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;

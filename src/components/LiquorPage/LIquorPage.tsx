@@ -1,8 +1,9 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import styled from 'styled-components';
 import LiquorTopBar from './LiquorTopBar';
 import GlobalContext from '../../stateManagement/globalContext';
 import LiquorItem from './LIquorItem';
+import AddLiquorPopUp from '../AddLiquorPopUp/AddLiquorPopUp';
 
 type LiquorPageType = {
   liquorType: LiquorType;
@@ -11,7 +12,7 @@ type LiquorPageType = {
 const StyledLiquorContentBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem; 
+  gap: 0.5rem;
 `;
 
 const LiquorPage: React.FC<LiquorPageType> = ({ liquorType }: LiquorPageType) => {
@@ -19,14 +20,17 @@ const LiquorPage: React.FC<LiquorPageType> = ({ liquorType }: LiquorPageType) =>
     state: { liquorState },
   } = useContext(GlobalContext);
 
+  const [displayAddLiquor, setDisplayAddLiquor] = useState<boolean>(false);
+
   return (
     <Fragment>
-      <LiquorTopBar liquorType={liquorType} />
+      <LiquorTopBar liquorType={liquorType} setDisplayAddLiquor={setDisplayAddLiquor} />
       <StyledLiquorContentBox>
         {liquorState[liquorType].map(liquor => (
           <LiquorItem key={liquor.id} liquor={liquor} />
         ))}
       </StyledLiquorContentBox>
+      <AddLiquorPopUp display={displayAddLiquor} />
     </Fragment>
   );
 };

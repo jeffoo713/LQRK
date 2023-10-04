@@ -4,10 +4,10 @@ import { COLORS } from '../../assets/styles';
 
 const StyledLiquorItem = styled.div`
   width: 170px;
-  aspect-ratio: 1/1;
   display: 'flex';
   flexdirection: 'column';
   justifycontent: 'center';
+  margin-bottom: 1rem;
 `;
 
 const LiquorImageBox = styled.div<{ $imageUrl: string }>`
@@ -18,10 +18,6 @@ const LiquorImageBox = styled.div<{ $imageUrl: string }>`
   background-size: 50% 170px;
   background-repeat: no-repeat;
   background-position: center;
-`;
-
-const StyledLiquorTitle = styled.p`
-  margin-bottom: 1rem;
 `;
 
 type LiquorItemType = {
@@ -40,7 +36,7 @@ const LiquorItem: React.FC<LiquorItemType> = ({ liquor }: LiquorItemType) => {
   return (
     <StyledLiquorItem>
       <LiquorImageBox $imageUrl={`url(https://images.punkapi.com/v2/${randomNumber()}.png)`} />
-      <StyledLiquorTitle>{truncatedName(liquor.name)}</StyledLiquorTitle>
+      <p>{truncatedName(liquor.name)}</p>
     </StyledLiquorItem>
   );
 };
