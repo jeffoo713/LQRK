@@ -1,13 +1,18 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import styled from 'styled-components';
 import LiquorTopBar from './LiquorTopBar';
 import GlobalContext from '../../stateManagement/globalContext';
+import LiquorItem from './LIquorItem';
 
 type LiquorPageType = {
   liquorType: LiquorType;
 };
 
-const StyledLiquorContentBox = styled.div``;
+const StyledLiquorContentBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; 
+`;
 
 const LiquorPage: React.FC<LiquorPageType> = ({ liquorType }: LiquorPageType) => {
   const {
@@ -15,16 +20,14 @@ const LiquorPage: React.FC<LiquorPageType> = ({ liquorType }: LiquorPageType) =>
   } = useContext(GlobalContext);
 
   return (
-    <StyledLiquorContentBox>
+    <Fragment>
       <LiquorTopBar liquorType={liquorType} />
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'wrap' }}>
-        {liquorState[liquorType].map(r => (
-          <div key={r.id} style={{ width: '150px', aspectRatio: '1 / 1', border: '1px solid black' }}>
-            <p>{r.name}</p>
-          </div>
+      <StyledLiquorContentBox>
+        {liquorState[liquorType].map(liquor => (
+          <LiquorItem key={liquor.id} liquor={liquor} />
         ))}
-      </div>
-    </StyledLiquorContentBox>
+      </StyledLiquorContentBox>
+    </Fragment>
   );
 };
 
