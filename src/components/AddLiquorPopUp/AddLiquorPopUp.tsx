@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { COLORS } from '../../assets/styles';
+import { useParams } from 'react-router-dom';
+import { TranslatedLiquorTypeEnums } from '../../enums/liquorEnums/liquorTypeEnum';
 
 type AddLiquorPopUpType = {
   display: boolean;
+  setDisplayAddLiquor: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const AddLiquorPopUp: React.FC<AddLiquorPopUpType> = ({ display }: AddLiquorPopUpType) => {
+const AddLiquorPopUp: React.FC<AddLiquorPopUpType> = ({
+  display,
+  setDisplayAddLiquor,
+}: AddLiquorPopUpType) => {
+  const { liquorType } = useParams();
+
+  const liquorTypeSingular = useMemo(() => {
+    const liquorTypeName = TranslatedLiquorTypeEnums[liquorType! as LiquorType];
+    return liquorTypeName.substring(0, liquorTypeName.length - 1);
+  }, [liquorType]);
+
   return (
     <div
       style={{
-        position: 'absolute',
-        transform: 'translate(-50%, -50%)',
-        top: '50%',
-        left: '50%',
-        width: '400px',
-        height: '400px',
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '550px',
+        height: '100vh',
         backgroundColor: `${COLORS.WHITE}`,
-        display: `${display ? 'block' : 'none'}`,
+        borderRight: '1px solid black',
+        transform: `${display ? 'translateX(0)' : 'translateX(-100%)'}`,
+        transition: '0.5s',
+        overflow: 'hidden',
       }}
     >
-      Add liquor pop up
+      <h3>{`Add ${liquorTypeSingular}`}</h3>
+      <span onClick={() => setDisplayAddLiquor(false)}>X</span>
     </div>
   );
 };

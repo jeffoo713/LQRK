@@ -30,7 +30,7 @@ const LiquorPage: React.FC<LiquorPageType> = ({ liquorType }: LiquorPageType) =>
           <LiquorItem key={liquor.id} liquor={liquor} />
         ))}
       </StyledLiquorContentBox>
-      <AddLiquorPopUp display={displayAddLiquor} />
+      <AddLiquorPopUp display={displayAddLiquor} setDisplayAddLiquor={setDisplayAddLiquor} />
     </Fragment>
   );
 };
