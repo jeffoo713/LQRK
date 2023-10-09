@@ -31,11 +31,11 @@ const LiquorItem: React.FC<LiquorItemType> = ({ liquor }: LiquorItemType) => {
     return name;
   };
 
-  const randomNumber = () => useMemo(() => Math.floor(Math.random() * 200 + 1), []);
+  const useRandomNumber = () => useMemo(() => Math.floor(Math.random() * 200 + 1), []);
 
   return (
     <StyledLiquorItem>
-      <LiquorImageBox $imageUrl={`url(https://images.punkapi.com/v2/${randomNumber()}.png)`} />
+      <LiquorImageBox $imageUrl={`url(https://images.punkapi.com/v2/${useRandomNumber()}.png)`} />
       <p>{truncatedName(liquor.name)}</p>
     </StyledLiquorItem>
   );

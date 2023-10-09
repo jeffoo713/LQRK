@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LiquorTopBar from './LiquorTopBar';
 import GlobalContext from '../../stateManagement/globalContext';
 import LiquorItem from './LIquorItem';
-import AddLiquorPopUp from '../AddLiquorPopUp/AddLiquorPopUp';
+import AddLiquorSlide from '../AddLiquorSlide/AddLiquorSlide';
 
 type LiquorPageType = {
   liquorType: LiquorType;
@@ -30,7 +30,7 @@ const LiquorPage: React.FC<LiquorPageType> = ({ liquorType }: LiquorPageType) =>
           <LiquorItem key={liquor.id} liquor={liquor} />
         ))}
       </StyledLiquorContentBox>
-      <AddLiquorPopUp display={displayAddLiquor} setDisplayAddLiquor={setDisplayAddLiquor} />
+      <AddLiquorSlide display={displayAddLiquor} setDisplayAddLiquor={setDisplayAddLiquor} />
     </Fragment>
   );
 };
