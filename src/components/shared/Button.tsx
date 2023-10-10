@@ -19,7 +19,7 @@ const StyledButton = styled.button<{ $forSignIn?: boolean }>`
   cursor: pointer;
 
   &:active {
-    background-color: ${COLORS.FORM.BTN_ACTIVATED};
+    background-color: ${COLORS.FORM.ACTIVATED};
   }
 `;
 
