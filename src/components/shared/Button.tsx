@@ -5,6 +5,7 @@ import { COLORS } from '../../assets/styles';
 type ButtonType = {
   children: ReactElement | string;
   forSignIn?: boolean;
+  type?: 'button' | 'submit' | 'reset' | undefined;
   onClick?: () => void;
 };
 
@@ -23,9 +24,9 @@ const StyledButton = styled.button<{ $forSignIn?: boolean }>`
   }
 `;
 
-const Button: React.FC<ButtonType> = ({ children, forSignIn, onClick }: ButtonType) => {
+const Button: React.FC<ButtonType> = ({ children, forSignIn, ...otherButtonProps }: ButtonType) => {
   return (
-    <StyledButton $forSignIn={forSignIn} onClick={onClick}>
+    <StyledButton $forSignIn={forSignIn} {...otherButtonProps}>
       {children}
     </StyledButton>
   );
