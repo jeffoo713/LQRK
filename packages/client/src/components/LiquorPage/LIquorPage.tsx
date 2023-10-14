@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useState } from 'react';
 import styled from 'styled-components';
 import LiquorTopBar from './LiquorTopBar';
 import GlobalContext from '../../stateManagement/globalContext';
-import LiquorItem from './LIquorItem';
+import LiquorItem from './LiquorItem';
 import AddLiquorSlide from '../AddLiquorSlide/AddLiquorSlide';
 
 type LiquorPageType = {
