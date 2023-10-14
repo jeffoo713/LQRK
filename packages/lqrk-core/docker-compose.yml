@@ -5,7 +5,7 @@ services:
     image: postgres:14.2-alpine
     restart: always
     env_file:
-      - common.env
+      - packages/lqrk-core/common.env
     volumes:
       - lqrk-data:/var/lib/postgresql/data
     ports:
@@ -15,7 +15,7 @@ services:
       file: services/user.yml
       service: user
     env_file:
-      - common.env
+      - packages/lqrk-core/common.env
     depends_on:
       - postgres
   liquor:
@@ -23,7 +23,7 @@ services:
       file: services/liquor.yml
       service: liquor
     env_file:
-      - common.env
+      - packages/lqrk-core/common.env
     depends_on:
       - postgres
   client:
@@ -31,7 +31,7 @@ services:
       file: services/client.yml
       service: client
     env_file:
-      - common.env
+      - packages/lqrk-core/common.env
 
 volumes:
   lqrk-data:

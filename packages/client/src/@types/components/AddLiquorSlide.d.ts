@@ -1,0 +1,3 @@
+type LiquorFormInput = {
+  name: string;
+};

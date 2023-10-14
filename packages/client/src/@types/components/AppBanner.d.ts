@@ -1,0 +1,3 @@
+type AppBannerType = {
+  signedIn: boolean;
+};
