@@ -20,7 +20,7 @@
   "rules": {
     "react-hooks/rules-of-hooks": 1,
     "react-hooks/exhaustive-deps": 2,
-    "@typescript-eslint/no-unused-vars": [2, { "varsIgnorePattern": "^React$" }],
+    "@typescript-eslint/no-unused-vars": [1, { "varsIgnorePattern": "^React$" }],
     "@typescript-eslint/no-explicit-any": "off",
     "max-len": [1, { "code": 110 }]
   }

@@ -5,6 +5,7 @@ import { TranslatedLiquorTypeEnums } from '../../enums/liquorEnums/liquorTypeEnu
 import SlideOverlay from './SlideOverlay';
 import styled from 'styled-components';
 import Button from '../shared/Button';
+import InputBox from '../shared/InputBox';
 
 const StyledAddLiuorSlide = styled.div<{ $display: boolean }>`
   position: fixed;
@@ -30,44 +31,6 @@ const StyledSlideCloseButton = styled.span`
   cursor: pointer;
 `;
 
-const StyledInputGroup = styled.div`
-  display: flex;
-  gap: 1rem;
-  font-size: 1rem;
-  margin-top: 1rem;
-`;
-
-const StyledInput = styled.input`
-  border: none;
-  font-size: 1.4rem;
-  padding: 0.2rem;
-  background-color: unset;
-  color: ${COLORS.BLACK};
-  border-bottom: 2.2px solid ${COLORS.SILVER};
-  z-index: 15;
-
-  &:focus,
-  &:not(:placeholder-shown) {
-    outline: none;
-    border-color: ${COLORS.FORM.ACTIVATED};
-  }
-
-  &:focus ~ label,
-  &:not(:placeholder-shown) ~ label {
-    color: ${COLORS.FORM.ACTIVATED};
-    transform: translate(0.3rem, -1rem);
-    font-size: 0.8rem;
-  }
-`;
-
-const StyledLabel = styled.label`
-  position: absolute;
-  color: ${COLORS.SILVER};
-  transform: translateX(0.3rem);
-  transition: 0.4s;
-  z-index: 13;
-`;
-
 type AddLiquorSlideType = {
   display: boolean;
   setDisplayAddLiquor: React.Dispatch<React.SetStateAction<boolean>>;
@@ -79,7 +42,13 @@ const AddLiquorSlide: React.FC<AddLiquorSlideType> = ({
 }: AddLiquorSlideType) => {
   const { liquorType } = useParams();
 
-  const [liquorFormInput, setLiquorFormInput] = useState<LiquorFormInput>({ name: '' });
+  const [liquorFormInput, setLiquorFormInput] = useState<LiquorFormInput>({
+    name: '',
+    year: '',
+    country: '',
+    alcohol_percentage: '',
+    rating: '',
+  });
 
   const liquorTypeSingular = useMemo(() => {
     const liquorTypeName = TranslatedLiquorTypeEnums[liquorType! as LiquorType];
@@ -107,16 +76,11 @@ const AddLiquorSlide: React.FC<AddLiquorSlideType> = ({
         <StyledSlideCloseButton onClick={() => setDisplayAddLiquor(false)}>X</StyledSlideCloseButton>
         <form onSubmit={handleLiquorFormSubmit}>
           <input type='text' name='type' value={liquorType} hidden readOnly />
-          <StyledInputGroup>
-            <StyledInput
-              type='text'
-              name='name'
-              autoComplete='off'
-              placeholder=''
-              onChange={handleLiquorFormChange}
-            />
-            <StyledLabel>Name</StyledLabel>
-          </StyledInputGroup>
+          <InputBox type='text' name='name' onChange={handleLiquorFormChange} />
+          <InputBox type='number' name='year' onChange={handleLiquorFormChange} />
+          <InputBox type='text' name='country' onChange={handleLiquorFormChange} />
+          <InputBox type='number' name='alcohol_percentage' onChange={handleLiquorFormChange} />
+          <InputBox type='number' name='rating' onChange={handleLiquorFormChange} />
           <Button type='submit'>Save liquor</Button>
         </form>
       </StyledAddLiuorSlide>
