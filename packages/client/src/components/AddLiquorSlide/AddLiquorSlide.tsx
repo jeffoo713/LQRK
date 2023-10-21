@@ -19,7 +19,7 @@ const StyledAddLiuorSlide = styled.div<{ $display: boolean }>`
   transition: 0.5s;
   overflow: hidden;
   z-index: 10;
-  padding: 1rem;
+  padding: 3rem;
 `;
 
 const StyledSlideCloseButton = styled.span`
@@ -29,6 +29,25 @@ const StyledSlideCloseButton = styled.span`
   right: 0;
   padding: 0.5rem;
   cursor: pointer;
+`;
+
+const StyledAddLiquorForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+`;
+
+const StyledTextarea = styled.textarea`
+  width: 80%;
+  display: block;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 type AddLiquorSlideType = {
@@ -48,6 +67,7 @@ const AddLiquorSlide: React.FC<AddLiquorSlideType> = ({
     country: '',
     alcohol_percentage: '',
     rating: '',
+    note: '',
   });
 
   const liquorTypeSingular = useMemo(() => {
@@ -60,7 +80,7 @@ const AddLiquorSlide: React.FC<AddLiquorSlideType> = ({
     console.log(liquorFormInput);
   };
 
-  const handleLiquorFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLiquorFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     setLiquorFormInput(prev => ({
@@ -73,16 +93,19 @@ const AddLiquorSlide: React.FC<AddLiquorSlideType> = ({
     <Fragment>
       <StyledAddLiuorSlide $display={display}>
         <h2>{`Add ${liquorTypeSingular}`}</h2>
-        <StyledSlideCloseButton onClick={() => setDisplayAddLiquor(false)}>X</StyledSlideCloseButton>
-        <form onSubmit={handleLiquorFormSubmit}>
+        <StyledSlideCloseButton onClick={() => setDisplayAddLiquor(false)}>close X</StyledSlideCloseButton>
+        <StyledAddLiquorForm onSubmit={handleLiquorFormSubmit} style={{ width: '100%' }}>
           <input type='text' name='type' value={liquorType} hidden readOnly />
           <InputBox type='text' name='name' onChange={handleLiquorFormChange} />
           <InputBox type='number' name='year' onChange={handleLiquorFormChange} />
           <InputBox type='text' name='country' onChange={handleLiquorFormChange} />
           <InputBox type='number' name='alcohol_percentage' onChange={handleLiquorFormChange} />
           <InputBox type='number' name='rating' onChange={handleLiquorFormChange} />
-          <Button type='submit'>Save liquor</Button>
-        </form>
+          <StyledTextarea rows={4} name='note' placeholder='Note' onChange={handleLiquorFormChange} />
+          <Button type='submit' style={{ fontSize: '1rem', padding: '0.5rem 1.5rem' }}>
+            Save liquor
+          </Button>
+        </StyledAddLiquorForm>
       </StyledAddLiuorSlide>
       <SlideOverlay display={display} onClick={() => setDisplayAddLiquor(false)} />
     </Fragment>

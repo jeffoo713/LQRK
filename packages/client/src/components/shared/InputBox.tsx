@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { COLORS } from '../../assets/styles';
 
 const StyledInputGroup = styled.div`
+  width: 80%;
   display: flex;
   gap: 1rem;
   font-size: 1rem;
@@ -10,6 +11,7 @@ const StyledInputGroup = styled.div`
 `;
 
 const StyledInput = styled.input`
+  width: 100%;
   border: none;
   font-size: 1.4rem;
   padding: 0 0.2rem;
@@ -48,7 +50,7 @@ type InputBoxType = {
 
 const InputBox: React.FC<InputBoxType> = ({ ...otherInputProps }: InputBoxType) => {
   const titleCasedName = useCallback(
-    (labelName: string) => labelName.charAt(0).toUpperCase() + labelName.substring(1).toLowerCase(),
+    (labelName: string) => labelName.charAt(0).toUpperCase() + labelName.substring(1).replace('_', ' '),
     []
   );
   const numberInputProps = useMemo(

@@ -1,7 +1,7 @@
 export const COLORS = {
   WHITE: '#f0f8ff',
   BLACK: '#373F51',
-  SILVER: '#c0c0c0',
+  SILVER: '#6d6d6d',
 
   FORM: {
     BTN: '#677fb1',

@@ -4,4 +4,5 @@ type LiquorFormInput = {
   country: string;
   alcohol_percentage: string;
   rating: string;
+  note: string;
 };

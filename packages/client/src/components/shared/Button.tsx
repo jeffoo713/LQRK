@@ -6,6 +6,7 @@ type ButtonType = {
   children: ReactElement | string;
   forSignIn?: boolean;
   type?: 'button' | 'submit' | 'reset' | undefined;
+  style?: { [key: string]: string };
   onClick?: () => void;
 };
 
