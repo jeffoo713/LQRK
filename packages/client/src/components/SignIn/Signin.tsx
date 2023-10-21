@@ -69,7 +69,10 @@ const SignIn: React.FC = () => {
           placeholder='Start with your username!'
           autoComplete='off'
         />
-        <Button {...{ type: 'submit' }} forSignIn>
+        <Button
+          type={'submit'}
+          style={{ width: '50%', border: `1px solid ${COLORS.FORM.INPUT_BORDER}` }}
+        >
           SIGN IN
         </Button>
       </StyledSignIn>

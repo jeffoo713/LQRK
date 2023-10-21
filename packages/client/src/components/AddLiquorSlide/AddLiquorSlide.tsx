@@ -93,7 +93,9 @@ const AddLiquorSlide: React.FC<AddLiquorSlideType> = ({
     <Fragment>
       <StyledAddLiuorSlide $display={display}>
         <h2>{`Add ${liquorTypeSingular}`}</h2>
-        <StyledSlideCloseButton onClick={() => setDisplayAddLiquor(false)}>close X</StyledSlideCloseButton>
+        <StyledSlideCloseButton onClick={() => setDisplayAddLiquor(false)}>
+          close X
+        </StyledSlideCloseButton>
         <StyledAddLiquorForm onSubmit={handleLiquorFormSubmit} style={{ width: '100%' }}>
           <input type='text' name='type' value={liquorType} hidden readOnly />
           <InputBox type='text' name='name' onChange={handleLiquorFormChange} />
@@ -101,8 +103,16 @@ const AddLiquorSlide: React.FC<AddLiquorSlideType> = ({
           <InputBox type='text' name='country' onChange={handleLiquorFormChange} />
           <InputBox type='number' name='alcohol_percentage' onChange={handleLiquorFormChange} />
           <InputBox type='number' name='rating' onChange={handleLiquorFormChange} />
-          <StyledTextarea rows={4} name='note' placeholder='Note' onChange={handleLiquorFormChange} />
-          <Button type='submit' style={{ fontSize: '1rem', padding: '0.5rem 1.5rem' }}>
+          <StyledTextarea
+            rows={4}
+            name='note'
+            placeholder='Note'
+            onChange={handleLiquorFormChange}
+          />
+          <Button
+            type='submit'
+            style={{ fontSize: '1rem', padding: '0.5rem 1.5rem', border: 'none' }}
+          >
             Save liquor
           </Button>
         </StyledAddLiquorForm>

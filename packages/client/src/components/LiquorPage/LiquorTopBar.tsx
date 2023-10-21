@@ -16,11 +16,17 @@ type LiquorTopBarType = {
   setDisplayAddLiquor: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const LiquorTopBar: React.FC<LiquorTopBarType> = ({ liquorType, setDisplayAddLiquor }: LiquorTopBarType) => {
+const LiquorTopBar: React.FC<LiquorTopBarType> = ({
+  liquorType,
+  setDisplayAddLiquor,
+}: LiquorTopBarType) => {
   return (
     <StyledLiquorPageTopBar>
       <h2>{TranslatedLiquorTypeEnums[liquorType]}: </h2>
-      <Button onClick={() => setDisplayAddLiquor(true)}>
+      <Button
+        onClick={() => setDisplayAddLiquor(true)}
+        style={{ width: 'fit-content', border: 'none' }}
+      >
         <span>
           <strong>+</strong> ADD LIQUOR
         </span>
