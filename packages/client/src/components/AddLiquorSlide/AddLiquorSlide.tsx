@@ -1,5 +1,5 @@
 import React, { Fragment, useMemo, useState } from 'react';
-import { COLORS } from '../../assets/styles';
+import { COLORS, STYLES } from '../../assets/styles';
 import { useParams } from 'react-router-dom';
 import { TranslatedLiquorTypeEnums } from '../../enums/liquorEnums/liquorTypeEnum';
 import SlideOverlay from './SlideOverlay';
@@ -20,11 +20,11 @@ const StyledAddLiuorSlide = styled.div<{ $display: boolean }>`
   overflow: hidden;
   z-index: 10;
   padding: 3rem;
+  ${STYLES.FLEX_COLUMN_START_CENTER}
 `;
 
 const StyledSlideCloseButton = styled.span`
   position: absolute;
-  transform: transformX(-100%);
   top: 0;
   right: 0;
   padding: 0.5rem;
@@ -32,6 +32,7 @@ const StyledSlideCloseButton = styled.span`
 `;
 
 const StyledAddLiquorForm = styled.form`
+  width: 80%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -39,7 +40,7 @@ const StyledAddLiquorForm = styled.form`
 `;
 
 const StyledTextarea = styled.textarea`
-  width: 80%;
+  width: 100%;
   display: block;
   font-size: 1rem;
   padding: 0.5rem;
@@ -92,17 +93,35 @@ const AddLiquorSlide: React.FC<AddLiquorSlideType> = ({
   return (
     <Fragment>
       <StyledAddLiuorSlide $display={display}>
-        <h2>{`Add ${liquorTypeSingular}`}</h2>
+        <h2 style={{ width: '80%', marginTop: '5vh' }}>{`Add ${liquorTypeSingular}`}</h2>
         <StyledSlideCloseButton onClick={() => setDisplayAddLiquor(false)}>
           close X
         </StyledSlideCloseButton>
-        <StyledAddLiquorForm onSubmit={handleLiquorFormSubmit} style={{ width: '100%' }}>
+        <StyledAddLiquorForm onSubmit={handleLiquorFormSubmit}>
           <input type='text' name='type' value={liquorType} hidden readOnly />
           <InputBox type='text' name='name' onChange={handleLiquorFormChange} />
-          <InputBox type='number' name='year' onChange={handleLiquorFormChange} />
+          <InputBox
+            type='number'
+            name='year'
+            min={1000}
+            max={3000}
+            onChange={handleLiquorFormChange}
+          />
           <InputBox type='text' name='country' onChange={handleLiquorFormChange} />
-          <InputBox type='number' name='alcohol_percentage' onChange={handleLiquorFormChange} />
-          <InputBox type='number' name='rating' onChange={handleLiquorFormChange} />
+          <InputBox
+            type='number'
+            name='alcohol_percentage'
+            min={0}
+            max={99}
+            onChange={handleLiquorFormChange}
+          />
+          <InputBox
+            type='number'
+            name='rating'
+            min={0.0}
+            max={5.0}
+            onChange={handleLiquorFormChange}
+          />
           <StyledTextarea
             rows={4}
             name='note'
@@ -111,7 +130,13 @@ const AddLiquorSlide: React.FC<AddLiquorSlideType> = ({
           />
           <Button
             type='submit'
-            style={{ fontSize: '1rem', padding: '0.5rem 1.5rem', border: 'none' }}
+            style={{
+              width: '80%',
+              fontSize: '1rem',
+              padding: '0.5rem 1.5rem',
+              border: 'none',
+              margin: '0 auto',
+            }}
           >
             Save liquor
           </Button>

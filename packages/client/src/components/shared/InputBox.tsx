@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { COLORS } from '../../assets/styles';
 
 const StyledInputGroup = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   gap: 1rem;
   font-size: 1rem;
@@ -45,18 +45,21 @@ const StyledLabel = styled.label`
 type InputBoxType = {
   type: string;
   name: string;
+  min?: number;
+  max?: number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputBox: React.FC<InputBoxType> = ({ ...otherInputProps }: InputBoxType) => {
   const titleCasedName = useCallback(
-    (labelName: string) => labelName.charAt(0).toUpperCase() + labelName.substring(1).replace('_', ' '),
+    (labelName: string) =>
+      labelName.charAt(0).toUpperCase() + labelName.substring(1).replace('_', ' '),
     []
   );
   const numberInputProps = useMemo(
     () =>
       otherInputProps.type === 'number'
-        ? { min: '0', step: `${otherInputProps.name === 'year' ? '1' : '0.1'}` }
+        ? { step: `${otherInputProps.name === 'year' ? '1' : '0.1'}` }
         : {},
     [otherInputProps.type, otherInputProps.name]
   );
